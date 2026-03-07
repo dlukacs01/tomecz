@@ -17,7 +17,7 @@ return new class extends Migration
 
             $table->foreignIdFor(Project::class)->constrained()->cascadeOnDelete();
 
-            $table->integer('position')->default(0);
+            $table->integer('position');
             $table->string('title')->index();
             $table->string('title_en')->index();
             $table->string('slug');

@@ -4,6 +4,9 @@
             <img src="{{ $photo->original }}" alt="{{ $photo->title }}" class="c-ar-content">
         </div>
 
-        <p class="c-photo-title">{{ $photo->title }}</p>
+        <div class="c-photo-meta">
+            <span class="text-start">{{ $photo->title }}</span>
+            <span class="text-end text-secondary">{{ $photo->project->title }}</span>
+        </div>
     </div>
 @endforeach

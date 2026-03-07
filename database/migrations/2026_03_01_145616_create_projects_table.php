@@ -17,10 +17,12 @@ return new class extends Migration
 
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
 
+            $table->integer('position');
             $table->string('title');
             $table->string('title_en');
             $table->string('slug');
             $table->integer('year');
+            $table->string('original');
 
             $table->timestamps();
         });

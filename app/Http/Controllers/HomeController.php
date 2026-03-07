@@ -16,7 +16,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $categories = $this->categoryService->getAll();
+        $categories = $this->categoryService->getAllWithProjectsAndPhotos();
         return view('home', compact('categories'));
     }
 

@@ -5,9 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Photo;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
+use App\Services\CategoryService;
 
 class PhotoController extends Controller
 {
+
+    public function __construct(
+        protected CategoryService $categoryService
+    )
+    {}
+
+    public function projects()
+    {
+        $title = __('Munkák') . ' &mdash; ' . __('Tomecz Dániel');
+        $categories = $this->categoryService->getAllWithProjects();
+        return view('projects', compact(
+            'title',
+            'categories'
+        ));
+    }
+
     /**
      * Display a listing of the resource.
      */

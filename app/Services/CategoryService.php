@@ -7,10 +7,22 @@ use Illuminate\Database\Eloquent\Collection;
 
 class CategoryService
 {
-    public function getAll(): Collection
+
+    // HOME
+    public function getAllWithProjectsAndPhotos(): Collection
     {
         return Category::with([
             'projects.photos' => fn ($q) => $q->latest() // Photos ordered per project in SQL
+        ])
+        ->orderBy('position')
+        ->get();
+    }
+
+    // WORKS
+    public function getAllWithProjects(): Collection
+    {
+        return Category::with([
+            'projects' => fn ($q) => $q->orderBy('position')
         ])
         ->orderBy('position')
         ->get();
