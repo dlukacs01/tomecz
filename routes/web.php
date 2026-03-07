@@ -17,3 +17,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
 }); */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::post('/locale', [HomeController::class, 'locale'])->name('home.locale');

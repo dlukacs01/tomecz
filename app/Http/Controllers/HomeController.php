@@ -19,4 +19,11 @@ class HomeController extends Controller
         $categories = $this->categoryService->getAll();
         return view('home', compact('categories'));
     }
+
+    public function locale(Request $request)
+    {
+        $locale = $request->input('locale');
+        session(['locale' => $locale]);
+        return redirect()->back();
+    }
 }
