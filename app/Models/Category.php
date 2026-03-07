@@ -23,4 +23,13 @@ class Category extends Model
     {
         return $this->hasMany(Project::class);
     }
+
+    // CUSTOM
+    public function latestPhotos()
+    {
+        return $this->projects
+            ->flatMap->photos // merge photos from all projects
+            ->sortByDesc('id') // GLOBAL per-category ordering
+            ->take(config('custom.photos', 2));
+    }
 }

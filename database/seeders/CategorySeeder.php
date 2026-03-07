@@ -17,6 +17,7 @@ class CategorySeeder extends Seeder
 
         DB::table('categories')->insert([
             [
+                'position' => 1,
                 'name' => 'Festmények',
                 'name_en' => 'Paintings',
                 'slug' => 'festmenyek',
@@ -24,6 +25,7 @@ class CategorySeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'position' => 2,
                 'name' => 'Papír Munkák',
                 'name_en' => 'Paper Works',
                 'slug' => 'papir-munkak',
@@ -31,6 +33,7 @@ class CategorySeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'position' => 3,
                 'name' => 'Installáció',
                 'name_en' => 'Installation',
                 'slug' => 'installacio',
@@ -38,6 +41,7 @@ class CategorySeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'position' => 4,
                 'name' => 'Nyomat',
                 'name_en' => 'Print',
                 'slug' => 'nyomat',

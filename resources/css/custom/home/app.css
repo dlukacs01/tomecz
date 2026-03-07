@@ -1,0 +1,24 @@
+body {
+    padding-top: 56px; /* SB */
+}
+
+/* GRID */
+
+.c-grid {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.c-grid--2-cols {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+/* SPINNER */
+
+.c-spinner-container {
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -2,6 +2,8 @@
 
 return array(
     'author' => 'David Lukacs',
+    'photos' => 2,
+    'spinner' => 1000,
     'keywords' => array(
         'hu' => [
             'tomecz',
