@@ -5,6 +5,9 @@ return array(
     'version' => '1.0',
     'photos' => 2,
     'spinner' => 1000,
+    'pagination' => array(
+        'photos' => 10,
+    ),
     'social' => array(
         'facebook' => array(
             'full' => 'https://facebook.com/lukacsdavid',

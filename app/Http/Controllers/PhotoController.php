@@ -6,15 +6,20 @@ use App\Models\Photo;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
 use App\Services\CategoryService;
+use App\Services\PhotoService;
+use App\Services\ProjectService;
 
 class PhotoController extends Controller
 {
 
     public function __construct(
-        protected CategoryService $categoryService
+        protected CategoryService $categoryService,
+        protected ProjectService $projectService,
+        protected PhotoService $photoService
     )
     {}
 
+    // PROJECTS
     public function projects()
     {
         $title = __('Munkák') . ' &mdash; ' . __('Tomecz Dániel');
@@ -22,6 +27,19 @@ class PhotoController extends Controller
         return view('projects', compact(
             'title',
             'categories'
+        ));
+    }
+
+    // PROJECT
+    public function project(string $category_slug, string $project_slug)
+    {
+        $project = $this->projectService->getBySlug($project_slug);
+        $title = $project->title . ' &mdash; ' . __('Tomecz Dániel');
+        $photos = $this->photoService->getByProject($project);
+        return view('project', compact(
+            'title',
+            'project',
+            'photos'
         ));
     }
 

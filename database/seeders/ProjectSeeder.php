@@ -24,7 +24,7 @@ class ProjectSeeder extends Seeder
                 'position' => 1,
                 'title' => 'Állapotkritika – Kritikus állapot',
                 'title_en' => 'Condition Critique – Critical Condition',
-                'slug' => 'allapotkritika-kritikus-allaopot',
+                'slug' => 'allapotkritika-kritikus-allapot',
                 'year' => fake()->numberBetween(2000, 2020),
                 'original' => 'https://placehold.co/1000x1000', // fake()->imageUrl(1000, 1000)
                 'created_at' => now(),
