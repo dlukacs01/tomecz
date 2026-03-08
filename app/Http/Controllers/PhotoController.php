@@ -70,9 +70,25 @@ class PhotoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Photo $photo)
+    public function show(string $category_slug, string $project_slug, string $photo_slug, Photo $photo)
     {
         //
+
+        $this->photoService->validateShowRoute($category_slug, $project_slug, $photo_slug, $photo);
+        $this->photoService->setViews($photo);
+        $title = $photo->title . ' &mdash; ' . __('Tomecz Dániel');
+        $keywords = $this->photoService->getKeywords($photo);
+        $tags = $this->photoService->getTags($photo);
+        $previous = $this->photoService->getPrevious($photo);
+        $next = $this->photoService->getNext($photo);
+        return view('photo', compact(
+            'photo',
+            'title',
+            'keywords',
+            'tags',
+            'previous',
+            'next'
+        ));
     }
 
     /**

@@ -17,4 +17,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 }); */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/kereses', [HomeController::class, 'search'])->name('home.search');
 Route::post('/locale', [HomeController::class, 'locale'])->name('home.locale');

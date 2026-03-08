@@ -22,7 +22,7 @@
 
                         {{-- PROJECTS --}}
                         <div class="c-grid c-grid--3-cols">
-                            <x-home.projects :category="$category" />
+                            <x-home.projects :$category />
                         </div>
 
                     @endforeach

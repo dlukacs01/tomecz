@@ -5,6 +5,7 @@
         <a href="{{ route('photo.show', [
             $photo->project->category->slug,
             $photo->project->slug,
+            $photo->slug,
             $photo
         ]) }}">
 

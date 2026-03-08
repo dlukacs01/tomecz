@@ -22,7 +22,7 @@
 
                         {{-- PHOTOS --}}
                         <div class="c-grid c-grid--2-cols">
-                            <x-home.home :category="$category" />
+                            <x-home.home :$category />
                         </div>
 
                     @endforeach

@@ -20,6 +20,11 @@ class HomeController extends Controller
         return view('home', compact('categories'));
     }
 
+    public function search()
+    {
+
+    }
+
     public function locale(Request $request)
     {
         $locale = $request->input('locale');

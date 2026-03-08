@@ -10,7 +10,7 @@
             <div class="col-md-12">
 
                 {{-- TITLE --}}
-                <x-home.breadcrumb :project="$project" />
+                <x-home.breadcrumb.project :$project />
 
                 {{-- SPINNER --}}
                 <x-home.spinner/>
@@ -19,11 +19,11 @@
 
                 {{-- PHOTOS --}}
                 <div class="c-grid c-grid--2-cols">
-                    <x-home.photos :photos="$photos" />
+                    <x-home.photos :$photos />
                 </div>
 
                 {{-- PAGINATION --}}
-                <x-home.pagination :photos="$photos" />
+                <x-home.pagination :$photos />
 
             </div>
         </div>
