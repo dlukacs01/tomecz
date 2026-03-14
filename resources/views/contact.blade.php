@@ -23,7 +23,7 @@
                         <p>{{ $user->address }}</p>
                         <p>{{ $user->phone }}</p>
                         <p>
-                            <a href="mailto:{{ $user->email }}">{{ $user->email_protected }}</a>
+                            <a href="mailto:{{ $user->email }}">{{ $user->emailProtected }}</a>
                         </p>
 
                     </div>

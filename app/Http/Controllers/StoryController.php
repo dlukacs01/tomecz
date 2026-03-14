@@ -52,9 +52,20 @@ class StoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Story $story)
+    public function show(string $story_slug, Story $story)
     {
         //
+
+        $this->storyService->validateShowRoute($story_slug, $story);
+        $title = $story->title . ' &mdash; ' . __('Webgaléria');
+        $keywords = $this->storyService->getKeywords($story);
+        $tags = $this->storyService->getTags($story);
+        return view('story', compact(
+            'title',
+            'story',
+            'keywords',
+            'tags'
+        ));
     }
 
     /**

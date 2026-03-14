@@ -32,4 +32,25 @@ class Photo extends Model
             get: fn (string $value) => app()->getLocale() === 'en' && !empty($this->title_en) ? $this->title_en : $value,
         );
     }
+
+    protected function technique(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => app()->getLocale() === 'en' && !empty($this->technique_en) ? $this->technique_en : $value,
+        );
+    }
+
+    protected function tags(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value) => app()->getLocale() === 'en' && !empty($this->tags_en) ? $this->tags_en : $value,
+        );
+    }
+
+    protected function body(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value) => app()->getLocale() === 'en' && !empty($this->body_en) ? $this->body_en : $value,
+        );
+    }
 }

@@ -16,24 +16,42 @@
         {{-- ITEMS --}}
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('photo.projects') }}">{{ __('Munkák') }}</a>
+                    <a class="nav-link {{ request()->routeIs('photo.*') ? 'active' : '' }}"
+                       href="{{ route('photo.projects') }}">
+                        {{ __('Munkák') }}
+                    </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.about') }}">{{ __('Rólam') }}</a>
+                    <a class="nav-link {{ request()->routeIs('user.about') ? 'active' : '' }}"
+                       href="{{ route('user.about') }}">
+                        {{ __('Rólam') }}
+                    </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('exhibition.exhibitions') }}">{{ __('Kiállítások') }}</a>
+                    <a class="nav-link {{ request()->routeIs('exhibition.exhibitions') ? 'active' : '' }}"
+                       href="{{ route('exhibition.exhibitions') }}">
+                        {{ __('Kiállítások') }}
+                    </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('story.stories') }}">{{ __('Hírek') }}</a>
+                    <a class="nav-link {{ request()->routeIs('story.*') ? 'active' : '' }}"
+                       href="{{ route('story.stories') }}">
+                        {{ __('Hírek') }}
+                    </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.contact') }}">{{ __('Kapcsolat') }}</a>
+                    <a class="nav-link {{ request()->routeIs('user.contact') ? 'active' : '' }}"
+                       href="{{ route('user.contact') }}">
+                        {{ __('Kapcsolat') }}
+                    </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Blog</a>
-                </li>
+
             </ul>
         </div>
 

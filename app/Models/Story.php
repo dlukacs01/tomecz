@@ -31,6 +31,20 @@ class Story extends Model
         );
     }
 
+    protected function tags(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value) => app()->getLocale() === 'en' && !empty($this->tags_en) ? $this->tags_en : $value,
+        );
+    }
+
+    protected function body(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value) => app()->getLocale() === 'en' && !empty($this->body_en) ? $this->body_en : $value,
+        );
+    }
+
     protected function formattedDate(): Attribute
     {
         return Attribute::make(

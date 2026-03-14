@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('slug');
             $table->string('intro');
             $table->string('intro_en');
+            $table->string('tags')->index();
+            $table->string('tags_en')->index();
             $table->text('body');
             $table->text('body_en');
             $table->string('original');
