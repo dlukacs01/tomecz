@@ -22,4 +22,14 @@ class UserController extends Controller
             'title'
         ));
     }
+
+    public function contact()
+    {
+        $user = $this->userService->getById(2);
+        $title = __('Kapcsolat') . ' &mdash; ' . __('Tomecz Dániel');
+        return view('contact', compact(
+            'user',
+            'title'
+        ));
+    }
 }

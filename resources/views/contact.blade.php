@@ -15,16 +15,18 @@
                 <div id="spinner-content" style="display: none;">
 
                     {{-- TITLE --}}
-                    <h1 class="text-center display-6 text-uppercase">{{ __('Kiállítások') }}</h1>
+                    <h1 class="text-center display-6 text-uppercase">{{ __('Kapcsolat') }}</h1>
 
-                    {{-- EXHIBITIONS --}}
-                    <table class="table">
-                        <tbody>
+                    <div class="text-center">
 
-                            <x-home.exhibitions :$exhibitions />
+                        <p>{{ __('Tomecz Dániel') }}</p>
+                        <p>{{ $user->address }}</p>
+                        <p>{{ $user->phone }}</p>
+                        <p>
+                            <a href="mailto:{{ $user->email }}">{{ $user->email_protected }}</a>
+                        </p>
 
-                        </tbody>
-                    </table>
+                    </div>
 
                 </div>
 

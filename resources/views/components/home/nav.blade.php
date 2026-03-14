@@ -29,7 +29,7 @@
                     <a class="nav-link" href="{{ route('story.stories') }}">{{ __('Hírek') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#!">{{ __('Kapcsolat') }}</a>
+                    <a class="nav-link" href="{{ route('user.contact') }}">{{ __('Kapcsolat') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Blog</a>
