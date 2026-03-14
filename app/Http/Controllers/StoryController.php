@@ -5,9 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Story;
 use App\Http\Requests\StoreStoryRequest;
 use App\Http\Requests\UpdateStoryRequest;
+use App\Services\StoryService;
 
 class StoryController extends Controller
 {
+
+    public function __construct(
+        protected StoryService $storyService,
+    )
+    {}
+
+    public function stories()
+    {
+        $title = __('Hírek') . ' &mdash; ' . __('Tomecz Dániel');
+        $stories = $this->storyService->getAll();
+        return view('stories', compact(
+            'title',
+            'stories'
+        ));
+    }
+
     /**
      * Display a listing of the resource.
      */

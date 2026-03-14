@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('title_en');
             $table->string('slug');
+            $table->string('intro');
+            $table->string('intro_en');
             $table->text('body');
             $table->text('body_en');
             $table->string('original');
-            $table->string('thumbnail');
 
             $table->timestamps();
         });

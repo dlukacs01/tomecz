@@ -5,23 +5,20 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-md-10">
 
                 {{-- SPINNER --}}
                 <x-home.spinner/>
 
                 <div id="spinner-content" style="display: none;">
 
-                    {{-- EXHIBITIONS --}}
-                    <table class="table">
-                        <tbody>
+                    {{-- TITLE --}}
+                    <h1 class="text-center display-6 text-uppercase">{{ __('Hírek') }}</h1>
 
-                            <x-home.exhibitions :$exhibitions />
-
-                        </tbody>
-                    </table>
+                    {{-- STORIES --}}
+                    <x-home.stories :$stories />
 
                 </div>
 

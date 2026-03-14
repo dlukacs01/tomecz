@@ -26,7 +26,7 @@
                     <a class="nav-link" href="{{ route('exhibition.exhibitions') }}">{{ __('Kiállítások') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#!">{{ __('Hírek') }}</a>
+                    <a class="nav-link" href="{{ route('story.stories') }}">{{ __('Hírek') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#!">{{ __('Kapcsolat') }}</a>
