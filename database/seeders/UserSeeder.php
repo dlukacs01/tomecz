@@ -17,25 +17,49 @@ class UserSeeder extends Seeder
     {
         //
 
-        // LUKÁCS DÁVID - ADMIN
         DB::table('users')->insert([
-            'name' => 'Lukács Dávid',
-            'email' => 'lukacs.dvid@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('Tomecz0123!?#'),
-            'remember_token' => Str::random(10),
-            'intro' => 'Rövid bemutatkozás...',
-            'intro_en' => 'Intro...',
-            'cv' => 'Életrajz...',
-            'cv_en' => 'CV...',
-            'media' => 'Média...',
-            'phone' => '+36 30 123 45 67',
-            'address' => '2000 Szentendre, Hamvas Béla u. 28. fsz. 2.',
-            'facebook' => 'https://facebook.com/lukacsdavid',
-            'instagram' => 'https://instagram.com/lukacsdavid',
-            'youtube' => 'https://youtube.com/lukacsdavid',
-            'created_at' => now(),
-            'updated_at' => now()
+
+            // LUKÁCS DÁVID - ADMIN 1
+            [
+                'name' => 'Lukács Dávid',
+                'email' => 'lukacs.dvid@gmail.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Tomecz0123!?#'),
+                'remember_token' => Str::random(10),
+                'intro' => 'LD Rövid bemutatkozás...',
+                'intro_en' => 'LD Intro...',
+                'cv' => 'LD Életrajz...',
+                'cv_en' => 'LD CV...',
+                'media' => 'LD Média...',
+                'phone' => '+36 30 123 45 67',
+                'address' => '2000 Szentendre, Hamvas Béla u. 28. fsz. 2.',
+                'facebook' => 'https://facebook.com/lukacsdavid',
+                'instagram' => 'https://instagram.com/lukacsdavid',
+                'youtube' => 'https://youtube.com/lukacsdavid',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+
+            // TOMECZ DÁNIEL - ADMIN 2
+            [
+                'name' => 'Tomecz Dániel',
+                'email' => 'tomeczdaniel97@gmail.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('Tomecz0123!?#'),
+                'remember_token' => Str::random(10),
+                'intro' => 'TD Rövid bemutatkozás...',
+                'intro_en' => 'TD Intro...',
+                'cv' => implode("\n\n", array_map(fn () => fake()->sentences(12, true), range(1,4))),
+                'cv_en' => 'TD CV...',
+                'media' => 'TD Média...',
+                'phone' => '+36 31 123 45 67',
+                'address' => '2001 Szentendre, Hamvas Béla u. 29. fsz. 3.',
+                'facebook' => 'https://www.facebook.com/dani.tomecz',
+                'instagram' => 'https://www.instagram.com/tomeczdaniel',
+                'youtube' => 'https://www.youtube.com/@tomeczdaniel617',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
         ]);
     }
 }

@@ -3,15 +3,15 @@
         <p class="mb-3">
 
             {{-- SOCIAL --}}
-            <a href="{{ config('custom.social.facebook.full', 'https://facebook.com/lukacsdavid') }}"
+            <a href="{{ config('custom.social.facebook.full', 'https://www.facebook.com/dani.tomecz') }}"
                target="_blank"
                class="small text-secondary me-1 c-text-underline-hover">Facebook</a>
 
-            <a href="{{ config('custom.social.instagram.full', 'https://instagram.com/lukacsdavid') }}"
+            <a href="{{ config('custom.social.instagram.full', 'https://www.instagram.com/tomeczdaniel') }}"
                target="_blank"
                class="small text-secondary me-1 c-text-underline-hover">Instagram</a>
 
-            <a href="{{ config('custom.social.youtube.full', 'https://youtube.com/lukacsdavid') }}"
+            <a href="{{ config('custom.social.youtube.full', 'https://www.youtube.com/@tomeczdaniel617') }}"
                target="_blank"
                class="small text-secondary me-1 c-text-underline-hover">Youtube</a>
 

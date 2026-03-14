@@ -10,16 +10,16 @@ return array(
     ),
     'social' => array(
         'facebook' => array(
-            'full' => 'https://facebook.com/lukacsdavid',
-            'short' => 'facebook.com/lukacsdavid'
+            'full' => 'https://www.facebook.com/dani.tomecz',
+            'short' => 'facebook.com/dani.tomecz',
         ),
         'instagram' => array(
-            'full' => 'https://instagram.com/lukacsdavid',
-            'short' => 'instagram.com/lukacsdavid'
+            'full' => 'https://www.instagram.com/tomeczdaniel',
+            'short' => 'instagram.com/tomeczdaniel'
         ),
         'youtube' => array(
-            'full' => 'https://youtube.com/lukacsdavid',
-            'short' => 'youtube.com/lukacsdavid'
+            'full' => 'https://www.youtube.com/@tomeczdaniel617',
+            'short' => 'youtube.com/@tomeczdaniel617'
         )
     ),
     'keywords' => array(

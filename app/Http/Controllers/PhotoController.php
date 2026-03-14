@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Photo;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
+use App\Models\Project;
 use App\Services\CategoryService;
 use App\Services\PhotoService;
 use App\Services\ProjectService;
@@ -31,9 +32,9 @@ class PhotoController extends Controller
     }
 
     // PROJECT
-    public function project(string $category_slug, string $project_slug)
+    public function project(string $category_slug, string $project_slug, Project $project)
     {
-        $project = $this->projectService->getBySlug($project_slug);
+        $this->photoService->validateProjectRoute($category_slug, $project_slug, $project);
         $title = $project->title . ' &mdash; ' . __('Tomecz Dániel');
         $photos = $this->photoService->getByProject($project);
         return view('project', compact(

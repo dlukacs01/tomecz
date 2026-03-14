@@ -65,6 +65,15 @@ class PhotoService
             ->first();
     }
 
+    // VALIDATE (project)
+    public function validateProjectRoute(string $category_slug, string $project_slug, Project $project): void
+    {
+        if(
+            ($category_slug !== $project->category->slug) ||
+            ($project_slug !== $project->slug)
+        ) throw new NotFoundHttpException();
+    }
+
     // VALIDATE (show)
     public function validateShowRoute(string $category_slug, string $project_slug, string $photo_slug, Photo $photo): void
     {

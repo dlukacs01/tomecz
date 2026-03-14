@@ -20,7 +20,7 @@
                     <a class="nav-link" href="{{ route('photo.projects') }}">{{ __('Munkák') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#!">{{ __('Rólam') }}</a>
+                    <a class="nav-link" href="{{ route('user.about') }}">{{ __('Rólam') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#!">{{ __('Kiállítások') }}</a>
