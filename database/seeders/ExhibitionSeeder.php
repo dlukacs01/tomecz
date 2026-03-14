@@ -17,20 +17,22 @@ class ExhibitionSeeder extends Seeder
 
         DB::table('exhibitions')->insert([
             [
-                'status_id' => 1,
-                'title' => 'Közelgő',
-                'title_en' => 'Upcoming',
-                'year' => fake()->numberBetween(2000, 2020),
+                'status_id' => 2,
+                'title' => 'Aktuális',
+                'title_en' => 'Current',
+                'year' => (int) date('Y'),
                 'location' => fake()->address,
+                'original' => 'https://placehold.co/1000x1000', // fake()->imageUrl(1000, 1000)
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'status_id' => 2,
-                'title' => 'Aktuális',
-                'title_en' => 'Current',
-                'year' => fake()->numberBetween(2000, 2020),
+                'status_id' => 3,
+                'title' => 'Közelgő',
+                'title_en' => 'Upcoming',
+                'year' => (int) date('Y') + 1,
                 'location' => fake()->address,
+                'original' => 'https://placehold.co/1000x1000', // fake()->imageUrl(1000, 1000)
                 'created_at' => now(),
                 'updated_at' => now()
             ],

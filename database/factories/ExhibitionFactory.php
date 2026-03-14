@@ -19,9 +19,9 @@ class ExhibitionFactory extends Factory
         return [
             //
 
-            'status_id' => 3, // archív
-            'year' => fake()->numberBetween(2000, 2020),
+            'status_id' => 1, // archív
             'location' => fake()->address,
+            'original' => 'https://placehold.co/1000x1000', // fake()->imageUrl(1000, 1000)
             'created_at' => now(),
             'updated_at' => now()
         ];

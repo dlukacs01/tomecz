@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('title_en');
             $table->integer('year');
             $table->string('location');
+            $table->string('original');
 
             $table->timestamps();
         });

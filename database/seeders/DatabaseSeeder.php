@@ -32,7 +32,6 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             VideoSeeder::class,
             StatusSeeder::class,
-            ExhibitionSeeder::class,
         ]);
 
         // Paintings
@@ -190,7 +189,10 @@ class DatabaseSeeder extends Seeder
         Exhibition::factory(config('custom.seeders.exhibitions', 10))->sequence(fn (Sequence $sequence) => [
             'title' => 'Archív' . '-' . $sequence->index + 1,
             'title_en' => 'Archive' . '-' . $sequence->index + 1,
+            'year' => (int) date('Y') - (config('custom.seeders.exhibitions', 10) - ($sequence->index)),
         ])->create();
+
+        $this->call(ExhibitionSeeder::class);
 
         // STORIES
         Story::factory(config('custom.seeders.stories', 10))->sequence(fn (Sequence $sequence) => [

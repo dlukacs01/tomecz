@@ -17,9 +17,9 @@ class StatusSeeder extends Seeder
 
         DB::table('statuses')->insert([
             [
-                'name' => 'Közelgő',
-                'name_en' => 'Upcoming',
-                'slug' => 'kozelgo',
+                'name' => 'Archív',
+                'name_en' => 'Archive',
+                'slug' => 'archiv',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -31,9 +31,9 @@ class StatusSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
-                'name' => 'Archív',
-                'name_en' => 'Archive',
-                'slug' => 'archiv',
+                'name' => 'Közelgő',
+                'name_en' => 'Upcoming',
+                'slug' => 'kozelgo',
                 'created_at' => now(),
                 'updated_at' => now()
             ],

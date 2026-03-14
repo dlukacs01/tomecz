@@ -23,7 +23,7 @@
                     <a class="nav-link" href="{{ route('user.about') }}">{{ __('Rólam') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#!">{{ __('Kiállítások') }}</a>
+                    <a class="nav-link" href="{{ route('exhibition.exhibitions') }}">{{ __('Kiállítások') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#!">{{ __('Hírek') }}</a>

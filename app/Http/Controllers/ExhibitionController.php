@@ -5,9 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Exhibition;
 use App\Http\Requests\StoreExhibitionRequest;
 use App\Http\Requests\UpdateExhibitionRequest;
+use App\Services\ExhibitionService;
 
 class ExhibitionController extends Controller
 {
+
+    public function __construct(
+        protected ExhibitionService $exhibitionService,
+    )
+    {}
+
+    public function exhibitions()
+    {
+        $title = __('Kiállítások') . ' &mdash; ' . __('Tomecz Dániel');
+        $exhibitions = $this->exhibitionService->getAll();
+        return view('exhibitions', compact(
+            'title',
+            'exhibitions'
+        ));
+    }
+
     /**
      * Display a listing of the resource.
      */
