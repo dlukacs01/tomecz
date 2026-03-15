@@ -1,7 +1,7 @@
 @foreach($videos as $video)
     <div class="c-photo-item">
 
-        <a href="{{ $video->url }}">
+        <a href="{{ $video->url }}" target="_blank">
             <div class="c-ar-container">
                 <img src="{{ $video->original }}" alt="{{ $video->title }}" class="c-ar-content">
             </div>

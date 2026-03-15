@@ -48,6 +48,13 @@ class User extends Authenticatable
     }
 
     // ACCESSORS
+    protected function cv(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value) => app()->getLocale() === 'en' && !empty($this->cv_en) ? $this->cv_en : $value,
+        );
+    }
+
     protected function emailProtected(): Attribute
     {
         return Attribute::make(
