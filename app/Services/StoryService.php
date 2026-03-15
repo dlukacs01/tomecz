@@ -3,15 +3,15 @@
 namespace App\Services;
 
 use App\Models\Story;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class StoryService
 {
 
-    public function getAll(): Collection
+    public function getAll(): LengthAwarePaginator
     {
-        return Story::orderbyDesc('id')->get();
+        return Story::orderbyDesc('id')->paginate(config('custom.pagination.stories', 10));
     }
 
     // KEYWORDS (string)

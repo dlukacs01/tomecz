@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         // Paintings
 
         // PHOTOS (Condition Critique – Critical Condition)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 1,
             'position' => $sequence->index + 1,
             'title' => 'Állapotkritika – Kritikus állapot' . '-' . $sequence->index + 1,
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         // PHOTOS (Modified memories)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 2,
             'position' => $sequence->index + 1,
             'title' => 'Módosított emlékek' . '-' . $sequence->index + 1,
@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         // PHOTOS (Layers of remembrance)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 3,
             'position' => $sequence->index + 1,
             'title' => 'Az emlékezés rétegei' . '-' . $sequence->index + 1,
@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
         // Paper Works
 
         // PHOTOS (Watercolor)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 4,
             'position' => $sequence->index + 1,
             'title' => 'Vízfestmény' . '-' . $sequence->index + 1,
@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         // PHOTOS (Cyanotypes)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 5,
             'position' => $sequence->index + 1,
             'title' => 'Cianotípiák' . '-' . $sequence->index + 1,
@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         // PHOTOS (Image Error)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 6,
             'position' => $sequence->index + 1,
             'title' => 'Képhiba' . '-' . $sequence->index + 1,
@@ -105,7 +105,7 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         // PHOTOS (Manual pixels)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 7,
             'position' => $sequence->index + 1,
             'title' => 'Manuális pixelek' . '-' . $sequence->index + 1,
@@ -118,7 +118,7 @@ class DatabaseSeeder extends Seeder
         // Installation
 
         // PHOTOS (Game Hunting)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 8,
             'position' => $sequence->index + 1,
             'title' => 'Vadászat' . '-' . $sequence->index + 1,
@@ -129,7 +129,7 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         // PHOTOS (Neon in the forest)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 9,
             'position' => $sequence->index + 1,
             'title' => 'Neon az erdőben' . '-' . $sequence->index + 1,
@@ -140,7 +140,7 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         // PHOTOS (Samples)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 10,
             'position' => $sequence->index + 1,
             'title' => 'Minták' . '-' . $sequence->index + 1,
@@ -153,7 +153,7 @@ class DatabaseSeeder extends Seeder
         // Print
 
         // PHOTOS (Digital graphics)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 11,
             'position' => $sequence->index + 1,
             'title' => 'Digitális grafika' . '-' . $sequence->index + 1,
@@ -164,7 +164,7 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         // PHOTOS (Photo)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 12,
             'position' => $sequence->index + 1,
             'title' => 'Fénykép' . '-' . $sequence->index + 1,
@@ -175,7 +175,7 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         // PHOTOS (Photo)
-        Photo::factory(config('custom.seeders.photos', 10))->sequence(fn (Sequence $sequence) => [
+        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
             'project_id' => 12,
             'position' => $sequence->index + 1,
             'title' => 'Fénykép' . '-' . $sequence->index + 1,
@@ -195,7 +195,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ExhibitionSeeder::class);
 
         // STORIES
-        Story::factory(config('custom.seeders.stories', 10))->sequence(fn (Sequence $sequence) => [
+        Story::factory(config('custom.seeders.stories', 100))->sequence(fn (Sequence $sequence) => [
             'title' => 'Hír' . '-' . $sequence->index + 1,
             'title_en' => 'Story' . '-' . $sequence->index + 1,
             'slug' => 'hir' . '-' . $sequence->index + 1,

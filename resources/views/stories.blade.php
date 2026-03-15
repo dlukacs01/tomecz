@@ -20,6 +20,9 @@
                     {{-- STORIES --}}
                     <x-home.stories :$stories />
 
+                    {{-- PAGINATION --}}
+                    <x-home.pagination :objects="$stories" />
+
                 </div>
 
             </div>

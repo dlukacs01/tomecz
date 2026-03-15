@@ -23,7 +23,7 @@
                 </div>
 
                 {{-- PAGINATION --}}
-                <x-home.pagination :$photos />
+                <x-home.pagination :objects="$photos" />
 
             </div>
         </div>

@@ -5,8 +5,13 @@ return array(
     'version' => '1.0',
     'photos' => 2,
     'spinner' => 1000,
+    'seeders' => array(
+        'photos' => 100,
+        'stories' => 100
+    ),
     'pagination' => array(
         'photos' => 10,
+        'stories' => 10
     ),
     'social' => array(
         'facebook' => array(

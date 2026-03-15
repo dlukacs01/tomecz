@@ -16,6 +16,7 @@
         'resources/css/custom/home/styles.css', // SB Home BS (v5.2.3)
         'resources/css/custom/home/app.css', // general
         'resources/css/custom/home/img.css',
+        'resources/css/custom/home/pagination.css',
     ])
 
     <title>{!! $title !!}</title>
