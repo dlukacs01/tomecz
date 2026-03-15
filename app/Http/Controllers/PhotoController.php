@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Services\CategoryService;
 use App\Services\PhotoService;
 use App\Services\ProjectService;
+use App\Services\VideoService;
 
 class PhotoController extends Controller
 {
@@ -16,7 +17,8 @@ class PhotoController extends Controller
     public function __construct(
         protected CategoryService $categoryService,
         protected ProjectService $projectService,
-        protected PhotoService $photoService
+        protected PhotoService $photoService,
+        protected VideoService $videoService
     )
     {}
 
@@ -25,9 +27,11 @@ class PhotoController extends Controller
     {
         $title = __('Munkák') . ' &mdash; ' . __('Tomecz Dániel');
         $categories = $this->categoryService->getAllWithProjects();
+        $videos = $this->videoService->getAll();
         return view('projects', compact(
             'title',
-            'categories'
+            'categories',
+            'videos'
         ));
     }
 

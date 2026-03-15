@@ -17,15 +17,26 @@
 
                 <div id="spinner-content" style="display: none;">
 
+                    {{-- VIDEOS --}}
+                    <p class="text-muted fw-semibold">
+                        {{ __('Videók') }} <span class="fw-normal">({{ count($videos) }})</span>
+                    </p>
+                    <div class="c-grid c-grid--2-cols">
+                        <x-home.videos :$videos />
+                    </div>
+
                     {{-- PHOTOS --}}
+                    <p class="text-muted fw-semibold">
+                        {{ __('Műtárgyak') }} <span class="fw-normal">({{ $photos->total() }})</span>
+                    </p>
                     <div class="c-grid c-grid--2-cols">
                         <x-home.photos :$photos />
                     </div>
 
-                    {{-- PAGINATION --}}
-                    <x-home.pagination :objects="$photos" />
-
                 </div>
+
+                {{-- PAGINATION --}}
+                <x-home.pagination :objects="$photos" />
 
             </div>
         </div>

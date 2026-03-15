@@ -17,15 +17,23 @@
                     {{-- CATEGORIES --}}
                     @foreach($categories as $category)
 
-                        {{-- TITLE --}}
+                        {{-- TITLE (photos) --}}
                         <h1 class="text-center display-6 text-uppercase">{{ $category->name }}</h1>
 
                         {{-- PHOTOS --}}
                         <div class="c-grid c-grid--2-cols">
-                            <x-home.home :$category />
+                            <x-home.categories :$category />
                         </div>
 
                     @endforeach
+
+                    {{-- TITLE (videos) --}}
+                    <h1 class="text-center display-6 text-uppercase">{{ __('Videó') }}</h1>
+
+                    {{-- VIDEOS --}}
+                    <div class="c-grid c-grid--2-cols">
+                        <x-home.videos :$videos />
+                    </div>
 
                 </div>
 

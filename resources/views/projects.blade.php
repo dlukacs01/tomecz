@@ -27,6 +27,14 @@
 
                     @endforeach
 
+                    {{-- TITLE (videos) --}}
+                    <h1 class="text-center display-6 text-uppercase">{{ __('Videó') }}</h1>
+
+                    {{-- VIDEOS --}}
+                    <div class="c-grid c-grid--3-cols">
+                        <x-home.videos :$videos />
+                    </div>
+
                 </div>
 
             </div>

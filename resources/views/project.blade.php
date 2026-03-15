@@ -17,9 +17,11 @@
 
                 <div id="spinner-content" style="display: none;">
 
-                {{-- PHOTOS --}}
-                <div class="c-grid c-grid--2-cols">
-                    <x-home.photos :$photos />
+                    {{-- PHOTOS --}}
+                    <div class="c-grid c-grid--2-cols">
+                        <x-home.photos :$photos />
+                    </div>
+
                 </div>
 
                 {{-- PAGINATION --}}

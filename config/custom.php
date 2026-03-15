@@ -4,6 +4,7 @@ return array(
     'author' => 'David Lukacs',
     'version' => '1.0',
     'photos' => 2,
+    'videos' => 2,
     'spinner' => 1000,
     'seeders' => array(
         'photos' => 100,
