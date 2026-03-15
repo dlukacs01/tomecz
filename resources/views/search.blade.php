@@ -10,21 +10,20 @@
             <div class="col-md-12">
 
                 {{-- TITLE --}}
-                <h1 class="text-center display-6 text-uppercase">{{ __('Kiállítások') }}</h1>
+                <p class="fw-bold">{{ __('Találatok a következőre') }}: "{{ $search }}"</p>
 
                 {{-- SPINNER --}}
                 <x-home.spinner/>
 
                 <div id="spinner-content" style="display: none;">
 
-                    {{-- EXHIBITIONS --}}
-                    <table class="table">
-                        <tbody>
+                    {{-- PHOTOS --}}
+                    <div class="c-grid c-grid--2-cols">
+                        <x-home.photos :$photos />
+                    </div>
 
-                            <x-home.exhibitions :$exhibitions />
-
-                        </tbody>
-                    </table>
+                    {{-- PAGINATION --}}
+                    <x-home.pagination :objects="$photos" />
 
                 </div>
 

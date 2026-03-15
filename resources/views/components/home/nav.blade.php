@@ -15,6 +15,10 @@
 
         {{-- ITEMS --}}
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            {{-- SEARCH --}}
+            <x-home.forms.search/>
+
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                 <li class="nav-item">

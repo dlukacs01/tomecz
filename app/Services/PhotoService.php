@@ -18,6 +18,24 @@ class PhotoService
             ->paginate(config('custom.pagination.photos', 10));
     }
 
+    public function getBySearch(string $search): LengthAwarePaginator
+    {
+        $searchValues = array_filter(explode(' ', $search)); // Remove empty words
+
+        return Photo::where(function ($query) use ($searchValues) {
+                foreach ($searchValues as $searchValue) {
+                    $searchPattern = "%$searchValue%";
+                    $query->orWhere('title', 'LIKE', $searchPattern)
+                        ->orWhere('title_en', 'LIKE', $searchPattern)
+                        ->orWhere('tags', 'LIKE', $searchPattern)
+                        ->orWhere('tags_en', 'LIKE', $searchPattern);
+                }
+            })
+            ->orderByDesc('id')
+            ->paginate(config('custom.pagination.photos', 10))
+            ->withQueryString();
+    }
+
     // VIEWS
     public function setViews(Photo $photo): void
     {

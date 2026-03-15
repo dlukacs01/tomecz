@@ -9,13 +9,13 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
 
+                {{-- TITLE --}}
+                <h1 class="text-center display-6 text-uppercase">{{ __('Hírek') }}</h1>
+
                 {{-- SPINNER --}}
                 <x-home.spinner/>
 
                 <div id="spinner-content" style="display: none;">
-
-                    {{-- TITLE --}}
-                    <h1 class="text-center display-6 text-uppercase">{{ __('Hírek') }}</h1>
 
                     {{-- STORIES --}}
                     <x-home.stories :$stories />

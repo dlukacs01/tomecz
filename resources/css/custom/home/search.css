@@ -1,0 +1,21 @@
+.c-search-container {
+    position: relative;
+}
+
+.c-search-container .c-icon-search {
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.c-search-container .form-control {
+    padding-left: 2rem;
+    background-color: var(--main-bg-color);
+}
+
+/* to remove default BS focus */
+.c-search-container .form-control:focus {
+    border-color: rgb(206,212,218);
+    box-shadow: none;
+}

@@ -1,5 +1,10 @@
+:root {
+    --main-bg-color: #f7f7f7;
+}
+
 body {
     padding-top: 56px; /* SB */
+    background-color: var(--main-bg-color);
 }
 
 #locale {
