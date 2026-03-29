@@ -57,3 +57,15 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+--------------------------
+
+## Custom
+
+PHP extensions needed:
+- intl (for hungarian alphabetical order, email validator)
+Intervention:
+- PHP 8.4 (local: PHP Version 8.4.12)
+- Mbstring PHP Extension
+- Image Processing PHP Extension (Imagick)
+- highly recommended to have the Exif PHP extension installed

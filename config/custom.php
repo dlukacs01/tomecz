@@ -30,6 +30,26 @@ return array(
             'short' => 'youtube.com/@tomeczdaniel617'
         )
     ),
+    'random' => array(
+        'filename' => 30
+    ),
+    'validations' => array(
+        'tinymce' => array(
+            'min' => 10,
+            'max' => 65535
+        ),
+        'extensions' => ['jpg', 'jpeg', 'png', 'bmp', 'gif', 'webp'],
+        'filesize' => array(
+            'display' => array(
+                'min' => 1, // KB
+                'max' => 30 // MB
+            ),
+            'calculation' => array(
+                'min' => 1, // KB
+                'max' => 30720 // 30 MB * 1024 = 30720 KB
+            )
+        )
+    ),
     'confirm' => array(
         'categories' => 'Biztosan törölni szeretnéd ezt a kategóriát?'
     ),
@@ -38,6 +58,23 @@ return array(
             'store' => 'A kategória létrehozása sikeres volt.',
             'update' => 'A kategória frissítése sikeres volt.',
             'destroy' => 'A kategória törlése sikeres volt.'
+        ),
+        'projects' => array(
+            'store' => 'A projekt létrehozása sikeres volt.',
+            'update' => 'A projekt frissítése sikeres volt.',
+            'destroy' => 'A projekt törlése sikeres volt.'
+        )
+    ),
+    'paths' => array(
+        'projects' => array(
+            'upload' => 'app/public/images/projects',
+            'public' => 'storage/images/projects',
+            'delete' => 'images/projects'
+        ),
+    ),
+    'sizes' => array(
+        'projects' => array(
+            'height' => 1000,
         )
     ),
     'keywords' => array(

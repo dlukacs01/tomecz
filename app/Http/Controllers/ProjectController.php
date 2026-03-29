@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Services\CategoryService;
+use App\Services\ProjectService;
 
 class ProjectController extends Controller
 {
+
+    public function __construct(
+        protected CategoryService $categoryService,
+        protected ProjectService $projectService,
+    ){}
+
     /**
      * Display a listing of the resource.
      */
@@ -22,6 +30,13 @@ class ProjectController extends Controller
     public function create()
     {
         //
+
+        $title = 'Projekt létrehozása' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        $categories = $this->categoryService->getAllForAdminPosition();
+        return view('admin.projects.create', compact(
+            'title',
+            'categories'
+        ));
     }
 
     /**
@@ -30,6 +45,36 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         //
+
+        // VALIDATION
+        $validated = $request->validated();
+
+        // VALUES
+        $inputs['title'] = $validated['title'];
+        $inputs['title_en'] = $validated['title_en'];
+        $inputs['slug'] = getSlug($inputs['title']);
+
+        $inputs['year'] = $validated['year'];
+
+        // fks
+        $inputs['category_id'] = $validated['category_id'];
+
+        // POSITION
+        $projects = $this->projectService->getAllForAdminPosition();
+        $inputs['position'] = getPosition($projects);
+
+        // ORIGINAL
+        $upload = $validated['original'];
+        $filename = getFilename();
+        $inputs['original'] = $filename;
+        $this->projectService->upload($upload, $filename);
+
+        // SAVE, SESSION, REDIRECT
+        Project::create($inputs);
+        return redirect()->route('admin.projects.index')->with('success', config(
+            'custom.flash.projects.store',
+            'A projekt létrehozása sikeres volt.'
+        ));
     }
 
     /**
