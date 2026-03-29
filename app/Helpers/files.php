@@ -40,3 +40,18 @@ function deleteOne(string $path): void
         Log::error('Deleting one file failed for deleteOne method: ' . $path);
     }
 }
+
+// DELETE (multiple)
+function deleteMultiple(array $files): void
+{
+    foreach($files as $file) {
+        if (!Storage::exists($file)) {
+            Log::error('File not found for deleteMultiple method: ' . $file);
+            return;
+        }
+    }
+
+    if (!Storage::delete($files)) {
+        Log::error('Deleting multiple files failed for deleteMultiple method: ' . implode(', ', $files));
+    }
+}

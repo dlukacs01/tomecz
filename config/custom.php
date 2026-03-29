@@ -72,6 +72,18 @@ return array(
             'public' => 'storage/images/projects',
             'delete' => 'images/projects'
         ),
+        'photos' => array(
+            'original' => array(
+                'upload' => 'app/public/images/photos/original',
+                'public' => 'storage/images/photos/original',
+                'delete' => 'images/photos/original'
+            ),
+            'thumbnail' => array(
+                'upload' => 'app/public/images/photos/thumbnail',
+                'public' => 'storage/images/photos/thumbnail',
+                'delete' => 'images/photos/thumbnail'
+            ),
+        ),
     ),
     'sizes' => array(
         'projects' => array(

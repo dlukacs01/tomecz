@@ -36,6 +36,31 @@ class PhotoService
             ->withQueryString();
     }
 
+    // DELETE (all for project)
+    public function deleteByProject(Project $project): void
+    {
+        $photos = $project->photos;
+        $files = [];
+        foreach ($photos as $photo) {
+
+            // originals
+            $path_original = getPathForDelete(
+                config('custom.paths.photos.original.delete', 'images/photos/original'),
+                $photo->original
+            );
+            $files[] = $path_original;
+
+            // thumbnails
+            $path_thumbnail = getPathForDelete(
+                config('custom.paths.photos.thumbnail.delete', 'images/photos/thumbnail'),
+                $photo->thumbnail
+            );
+            $files[] = $path_thumbnail;
+
+        }
+        deleteMultiple($files);
+    }
+
     // VIEWS
     public function setViews(Photo $photo): void
     {

@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Services\CategoryService;
+use App\Services\PhotoService;
 use App\Services\ProjectService;
 
 class ProjectController extends Controller
@@ -14,6 +15,7 @@ class ProjectController extends Controller
     public function __construct(
         protected CategoryService $categoryService,
         protected ProjectService $projectService,
+        protected PhotoService $photoService
     ){}
 
     /**
@@ -163,6 +165,19 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         //
+
+        // FILES
+        $this->projectService->deleteFiles($project);
+
+        // PHOTOS
+        $this->photoService->deleteByProject($project);
+
+        // SAVE, SESSION, REDIRECT
+        $project->delete();
+        return redirect()->route('admin.projects.index')->with('success', config(
+            'custom.flash.projects.destroy',
+            'A projekt törlése sikeres volt.'
+        ));
     }
 
     public function select()
