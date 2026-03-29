@@ -125,5 +125,14 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+
+        // POLICY
+
+        // SAVE, SESSION, REDIRECT
+        $category->delete();
+        return redirect()->route('admin.categories.index')->with('success', config(
+            'custom.flash.categories.destroy',
+            'A kategória törlése sikeres volt.'
+        ));
     }
 }
