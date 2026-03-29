@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -31,5 +32,15 @@ class UserController extends Controller
             'user',
             'title'
         ));
+    }
+
+    public function password_edit(User $user)
+    {
+
+    }
+
+    public function password_update(User $user)
+    {
+
     }
 }

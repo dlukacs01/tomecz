@@ -15,6 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
             Route::middleware('web')->name('photo.')->group(base_path('routes/home/photos.php'));
             Route::middleware('web')->name('exhibition.')->group(base_path('routes/home/exhibitions.php'));
             Route::middleware('web')->name('story.')->group(base_path('routes/home/stories.php'));
+            Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->name('admin.')->group(base_path('routes/admin/users.php'));
+            Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->name('admin.')->group(base_path('routes/admin/categories.php'));
+            Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->name('admin.')->group(base_path('routes/admin/projects.php'));
+            Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->name('admin.')->group(base_path('routes/admin/photos.php'));
+            Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->name('admin.')->group(base_path('routes/admin/exhibitions.php'));
+            Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->name('admin.')->group(base_path('routes/admin/stories.php'));
         },
     )
     ->withMiddleware(function (Middleware $middleware): void {

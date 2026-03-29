@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,15 @@ Route::get('/kereses', [HomeController::class, 'search'])->name('home.search');
 Route::post('/locale', [HomeController::class, 'locale'])->name('home.locale');
 
 // ADMIN
+
+Route::get('/admin', [AdminController::class, 'index'])
+    ->name('admin.index')
+    ->middleware('auth', 'verified');
+
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
