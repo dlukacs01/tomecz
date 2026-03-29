@@ -98,6 +98,16 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         //
+
+        // POLICY
+
+        $title = 'Projekt szerkesztése' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        $categories = $this->categoryService->getAllForAdminPosition();
+        return view('admin.projects.edit', compact(
+            'title',
+            'project',
+            'categories'
+        ));
     }
 
     /**
@@ -106,6 +116,45 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         //
+
+        // VALIDATION
+        $validated = $request->validated();
+
+        // VALUES
+        $project->title = $validated['title'];
+        $project->title_en = $validated['title_en'];
+        $project->slug = getSlug($project->title);
+
+        $project->year = $validated['year'];
+
+        // fks
+        $project->category_id = $validated['category_id'];
+
+        // POSITION
+        $old = $project->position;
+        $new = $project->position = $validated['position'];
+        $projects = $this->projectService->getAllForAdminPosition();
+        updatePosition($old, $new, $projects, 'projects');
+
+        // ORIGINAL
+        if (isset($validated['original'])) {
+
+            // old
+            $this->projectService->deleteFiles($project);
+
+            // new
+            $upload = $validated['original'];
+            $filename = getFilename();
+            $project->original = $filename;
+            $this->projectService->upload($upload, $filename);
+        }
+
+        // SAVE, SESSION, REDIRECT
+        $project->save();
+        return redirect()->route('admin.projects.index')->with('success', config(
+            'custom.flash.projects.update',
+            'A projekt frissítése sikeres volt.'
+        ));
     }
 
     /**

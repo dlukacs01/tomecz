@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class UpdateProjectRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateProjectRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,17 @@ class UpdateProjectRequest extends FormRequest
      */
     public function rules(): array
     {
+        $min = config('custom.validations.filesize.calculation.min', 1);
+        $max = config('custom.validations.filesize.calculation.max', 30720);
         return [
             //
+
+            'position' => ['required', 'integer', 'min:1', 'max:1000000000'],
+            'title' => ['required', 'string', 'min:3', 'max:255'],
+            'title_en' => ['nullable', 'string', 'min:3', 'max:255'],
+            'year' => ['required', 'integer', 'min:1900', 'max:' . date('Y')],
+            'category_id' => ['required', 'integer'],
+            'original' => ['nullable', File::image()->min($min)->max($max)]
         ];
     }
 }

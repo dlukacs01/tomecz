@@ -22,7 +22,9 @@ class ProjectService
     // ADMIN (index)
     public function getAllForAdminIndex(): LengthAwarePaginator
     {
-        return Project::orderByDesc('id')->paginate(config('custom.pagination.admin', 10));
+        return Project::with('category')
+            ->orderByDesc('id')
+            ->paginate(config('custom.pagination.admin', 10));
     }
 
     // UPLOAD
@@ -37,5 +39,15 @@ class ProjectService
             $filename
         );
         $image->save($path);
+    }
+
+    // DELETE (one)
+    public function deleteFiles(Project $project): void
+    {
+        $path = getPathForDelete(
+            config('custom.paths.projects.delete', 'images/projects'),
+            $project->original
+        );
+        deleteOne($path);
     }
 }
