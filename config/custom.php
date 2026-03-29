@@ -28,6 +28,13 @@ return array(
             'short' => 'youtube.com/@tomeczdaniel617'
         )
     ),
+    'flash' => array(
+        'categories' => array(
+            'store' => 'A kategória létrehozása sikeres volt.',
+            'update' => 'A kategória frissítése sikeres volt.',
+            'destroy' => 'A kategória törlése sikeres volt.'
+        )
+    ),
     'keywords' => array(
         'hu' => [
             'tomecz',

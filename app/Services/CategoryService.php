@@ -27,4 +27,10 @@ class CategoryService
         ->orderBy('position')
         ->get();
     }
+
+    // ADMIN
+    public function getAllForAdmin(): Collection
+    {
+        return Category::orderBy('position')->get();
+    }
 }

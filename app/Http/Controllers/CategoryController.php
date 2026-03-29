@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Services\CategoryService;
 
 class CategoryController extends Controller
 {
+
+    public function __construct(
+        protected CategoryService $categoryService
+    ) {}
+
     /**
      * Display a listing of the resource.
      */
@@ -22,6 +28,9 @@ class CategoryController extends Controller
     public function create()
     {
         //
+
+        $title = 'Kategória létrehozása' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        return view('admin.categories.create', compact('title'));
     }
 
     /**
@@ -30,6 +39,25 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         //
+
+        // VALIDATION
+        $validated = $request->validated();
+
+        // VALUES
+        $inputs['name'] = $validated['name'];
+        $inputs['name_en'] = $validated['name_en'];
+        $inputs['slug'] = getSlug($inputs['name']);
+
+        // POSITION
+        $categories = $this->categoryService->getAllForAdmin();
+        $inputs['position'] = getPosition($categories);
+
+        // SAVE, SESSION, REDIRECT
+        Category::create($inputs);
+        return redirect()->route('admin.categories.index')->with('success', config(
+            'custom.flash.categories.store',
+            'A kategória létrehozása sikeres volt.'
+        ));
     }
 
     /**

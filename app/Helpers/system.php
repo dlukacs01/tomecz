@@ -1,6 +1,8 @@
 <?php
 
 // AUTHOR
+use Illuminate\Database\Eloquent\Collection;
+
 function getAuthor(): string
 {
     return config('custom.author', 'David Lukacs');
@@ -22,4 +24,16 @@ function getTitle(?string $title): string
 function getKeywords(?string $keywords): string
 {
     return $keywords ?? implode(', ', config(__('custom.keywords.hu')));
+}
+
+// SLUG
+function getSlug(string $title): string
+{
+    return ($slug = Str::slug($title)) === '' ? 'default-slug' : $slug;
+}
+
+// POSITION (get)
+function getPosition(?Collection $objects): int
+{
+    return $objects ? $objects->max('position') + 1 : 1;
 }
