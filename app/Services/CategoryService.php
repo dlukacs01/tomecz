@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Category;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
 class CategoryService
@@ -28,9 +29,15 @@ class CategoryService
         ->get();
     }
 
-    // ADMIN
-    public function getAllForAdmin(): Collection
+    // ADMIN (position)
+    public function getAllForAdminPosition(): Collection
     {
         return Category::orderBy('position')->get();
+    }
+
+    // ADMIN (index)
+    public function getAllForAdminIndex(): LengthAwarePaginator
+    {
+        return Category::orderBy('position')->paginate(config('custom.pagination.admin', 10));
     }
 }

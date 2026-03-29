@@ -5,6 +5,7 @@ return array(
     'version' => '1.0',
     'photos' => 2,
     'videos' => 2,
+    'alert' => 5000,
     'spinner' => 1000,
     'seeders' => array(
         'photos' => 100,
@@ -12,7 +13,8 @@ return array(
     ),
     'pagination' => array(
         'photos' => 10,
-        'stories' => 10
+        'stories' => 10,
+        'admin' => 10
     ),
     'social' => array(
         'facebook' => array(
@@ -27,6 +29,9 @@ return array(
             'full' => 'https://www.youtube.com/@tomeczdaniel617',
             'short' => 'youtube.com/@tomeczdaniel617'
         )
+    ),
+    'confirm' => array(
+        'categories' => 'Biztosan törölni szeretnéd ezt a kategóriát?'
     ),
     'flash' => array(
         'categories' => array(

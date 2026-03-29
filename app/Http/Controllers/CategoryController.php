@@ -20,6 +20,13 @@ class CategoryController extends Controller
     public function index()
     {
         //
+
+        $title = 'Kategóriák megtekintése' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        $categories = $this->categoryService->getAllForAdminIndex();
+        return view('admin.categories.index', compact(
+            'title',
+            'categories'
+        ));
     }
 
     /**
@@ -49,7 +56,7 @@ class CategoryController extends Controller
         $inputs['slug'] = getSlug($inputs['name']);
 
         // POSITION
-        $categories = $this->categoryService->getAllForAdmin();
+        $categories = $this->categoryService->getAllForAdminPosition();
         $inputs['position'] = getPosition($categories);
 
         // SAVE, SESSION, REDIRECT
