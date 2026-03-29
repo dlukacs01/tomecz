@@ -37,3 +37,21 @@ function getPosition(?Collection $objects): int
 {
     return $objects ? $objects->max('position') + 1 : 1;
 }
+
+// POSITION (update)
+function updatePosition(int $old, int $new, Collection $objects, string $table): void
+{
+    if ($new < $old) {
+        $affectedIds = $objects->whereBetween('position', [$new, $old - 1])->pluck('id');
+        DB::table($table)
+            ->whereIn('id', $affectedIds)
+            ->increment('position');
+    }
+
+    if ($new > $old) {
+        $affectedIds = $objects->whereBetween('position', [$old + 1, $new])->pluck('id');
+        DB::table($table)
+            ->whereIn('id', $affectedIds)
+            ->decrement('position');
+    }
+}

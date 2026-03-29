@@ -81,6 +81,13 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
+
+        // POLICY
+        $title = 'Kategória szerkesztése' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        return view('admin.categories.edit', compact(
+            'title',
+            'category'
+        ));
     }
 
     /**
@@ -89,6 +96,27 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         //
+
+        // VALIDATION
+        $validated = $request->validated();
+
+        // VALUES
+        $category->name = $validated['name'];
+        $category->name_en = $validated['name_en'];
+        $category->slug = getSlug($category->name);
+
+        // POSITION
+        $old = $category->position;
+        $new = $category->position = $validated['position'];
+        $categories = $this->categoryService->getAllForAdminPosition();
+        updatePosition($old, $new, $categories, 'categories');
+
+        // SAVE, SESSION, REDIRECT
+        $category->save();
+        return redirect()->route('admin.categories.index')->with('success', config(
+            'custom.flash.categories.update',
+            'A kategória frissítése sikeres volt.'
+        ));
     }
 
     /**
