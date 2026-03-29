@@ -18,7 +18,8 @@
     @vite([
         'resources/css/custom/admin/styles.css', // SB Admin BS (v5.2.3)
         'resources/css/fas.css', // font awesome imports
-        'resources/css/custom/admin/app.css' // general
+        'resources/css/custom/admin/app.css', // general
+        'resources/css/custom/admin/img.css'
     ])
 </head>
 

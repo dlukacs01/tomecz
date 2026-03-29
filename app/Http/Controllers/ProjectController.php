@@ -22,6 +22,13 @@ class ProjectController extends Controller
     public function index()
     {
         //
+
+        $title = 'Projektek megtekintése' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        $projects = $this->projectService->getAllForAdminIndex();
+        return view('admin.projects.index', compact(
+            'title',
+            'projects'
+        ));
     }
 
     /**

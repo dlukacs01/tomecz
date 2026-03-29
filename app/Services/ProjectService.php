@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Project;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Drivers\Imagick\Driver;
@@ -16,6 +17,12 @@ class ProjectService
     public function getAllForAdminPosition(): Collection
     {
         return Project::orderBy('position')->get();
+    }
+
+    // ADMIN (index)
+    public function getAllForAdminIndex(): LengthAwarePaginator
+    {
+        return Project::orderByDesc('id')->paginate(config('custom.pagination.admin', 10));
     }
 
     // UPLOAD

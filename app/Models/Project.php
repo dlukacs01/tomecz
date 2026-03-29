@@ -41,4 +41,13 @@ class Project extends Model
             get: fn (string $value) => app()->getLocale() === 'en' && !empty($this->title_en) ? $this->title_en : $value,
         );
     }
+
+    protected function original(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => str_contains($value, 'https://') || str_contains($value, 'http://') ? $value : asset(
+                config('custom.paths.projects.public', 'storage/images/projects') . '/' . $value
+            ),
+        );
+    }
 }

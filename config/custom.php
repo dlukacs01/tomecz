@@ -51,7 +51,8 @@ return array(
         )
     ),
     'confirm' => array(
-        'categories' => 'Biztosan törölni szeretnéd ezt a kategóriát?'
+        'categories' => 'Biztosan törölni szeretnéd ezt a kategóriát?',
+        'projects' => 'Biztosan törölni szeretnéd ezt a projektet?',
     ),
     'flash' => array(
         'categories' => array(
