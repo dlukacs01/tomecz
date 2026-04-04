@@ -53,6 +53,7 @@ return array(
     'confirm' => array(
         'categories' => 'Biztosan törölni szeretnéd ezt a kategóriát?',
         'projects' => 'Biztosan törölni szeretnéd ezt a projektet?',
+        'photos' => 'Biztosan törölni szeretnéd ezt a képet?',
     ),
     'flash' => array(
         'categories' => array(

@@ -22,6 +22,7 @@ class PhotoService
             ->paginate(config('custom.pagination.photos', 10));
     }
 
+    // SEARCH
     public function getBySearch(string $search): LengthAwarePaginator
     {
         $searchValues = array_filter(explode(' ', $search)); // Remove empty words
@@ -38,6 +39,12 @@ class PhotoService
             ->orderByDesc('id')
             ->paginate(config('custom.pagination.photos', 10))
             ->withQueryString();
+    }
+
+    // PROJECT (admin)
+    public function getByProjectForAdmin(Project $project): LengthAwarePaginator
+    {
+        return $project->photos()->orderBy('position')->paginate(config('custom.pagination.admin', 10));
     }
 
     // DELETE (all for project)

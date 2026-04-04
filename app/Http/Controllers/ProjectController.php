@@ -18,6 +18,16 @@ class ProjectController extends Controller
         protected PhotoService $photoService
     ){}
 
+    public function select()
+    {
+        $title = 'Projekt választása' . ' &mdash; ' . config('app.name', 'Webgaléria');
+        $projects = $this->projectService->getAllForAdminIndex();
+        return view('admin.projects.select', compact(
+            'title',
+            'projects'
+        ));
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -178,10 +188,5 @@ class ProjectController extends Controller
             'custom.flash.projects.destroy',
             'A projekt törlése sikeres volt.'
         ));
-    }
-
-    public function select()
-    {
-
     }
 }

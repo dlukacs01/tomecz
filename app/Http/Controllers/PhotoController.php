@@ -48,6 +48,19 @@ class PhotoController extends Controller
         ));
     }
 
+    public function project_admin(Project $project)
+    {
+        $title = 'Képek megtekintése' . ' &mdash; ' . config('app.name', 'Webgaléria');
+        $photos = $this->photoService->getByProjectForAdmin($project);
+        return view('admin.photos.project', compact(
+            'title',
+            'project',
+            'photos'
+        ));
+    }
+
+    // RESOURCE
+
     /**
      * Display a listing of the resource.
      */

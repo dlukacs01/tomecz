@@ -1,0 +1,5 @@
+
+/* Showing 1 to 24 of 1000 results */
+p.small.text-muted:has(> span:nth-of-type(3)) {
+    display: none;
+}
