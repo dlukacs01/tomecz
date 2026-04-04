@@ -56,12 +56,27 @@ class PhotoController extends Controller
         //
     }
 
+    public function pc()
+    {
+        $projects = $this->projectService->getByCategoryId(request()->categoryId);
+        return view('components.admin.partials.projects.create', compact('projects'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         //
+
+        $title = 'Kép feltöltése' . ' &mdash; ' . config('app.name', 'Webgaléria');
+        $allowed_project = $this->projectService->atLeastOneProjectExists();
+        $categories = $this->categoryService->getAllForAdminPosition();
+        return view('admin.photos.create', compact(
+            'title',
+            'allowed_project',
+            'categories'
+        ));
     }
 
     /**
@@ -70,6 +85,44 @@ class PhotoController extends Controller
     public function store(StorePhotoRequest $request)
     {
         //
+
+        // VALIDATION
+        $validated = $request->validated();
+
+        // VALUES
+        $inputs['title'] = $validated['title'];
+        $inputs['title_en'] = $validated['title_en'];
+        $inputs['slug'] = getSlug($inputs['title']);
+        $inputs['year'] = $validated['year'];
+        $inputs['size'] = $validated['size'];
+        $inputs['technique'] = $validated['technique'];
+        $inputs['technique_en'] = $validated['technique_en'];
+        $inputs['tags'] = $validated['tags'];
+        $inputs['tags_en'] = $validated['tags_en'];
+        $inputs['body'] = $validated['body'];
+        $inputs['body_en'] = $validated['body_en'];
+
+        // fks
+        if(isset($validated['project_id'])) $inputs['project_id'] = $validated['project_id'];
+
+        // POSITION
+        $project = Project::findOrFail($inputs['project_id']);
+        $photos = $project->photos;
+        $inputs['position'] = getPosition($photos);
+
+        // ORIGINAL
+        $upload = $validated['original'];
+        $filename = getFilename();
+        $inputs['original'] = $filename;
+        $inputs['thumbnail'] = $filename;
+        $this->photoService->upload($upload, $filename);
+
+        // SAVE, SESSION, REDIRECT
+        Photo::create($inputs);
+        return redirect()->back()->with('success', config(
+            'custom.flash.photos.store',
+            'A műtárgy feltöltése sikeres volt.'
+        ));
     }
 
     /**

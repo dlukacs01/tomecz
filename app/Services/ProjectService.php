@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Category;
 use App\Models\Project;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
@@ -25,6 +26,19 @@ class ProjectService
         return Project::with(['category', 'photos'])
             ->orderByDesc('id')
             ->paginate(config('custom.pagination.admin', 10));
+    }
+
+    // check if we have at least one project (for photo create)
+    public function atLeastOneProjectExists(): bool
+    {
+        return Project::query()->exists();
+    }
+
+    // admin photo create ajax
+    public function getByCategoryId(int $category_id): Collection
+    {
+        $category = Category::findOrFail($category_id);
+        return $category->projects;
     }
 
     // UPLOAD

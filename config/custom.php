@@ -64,7 +64,12 @@ return array(
             'store' => 'A projekt létrehozása sikeres volt.',
             'update' => 'A projekt frissítése sikeres volt.',
             'destroy' => 'A projekt törlése sikeres volt.'
-        )
+        ),
+        'photos' => array(
+            'store' => 'A műtárgy feltöltése sikeres volt.',
+            'update' => 'A műtárgy frissítése sikeres volt.',
+            'destroy' => 'A műtárgy törlése sikeres volt.'
+        ),
     ),
     'paths' => array(
         'projects' => array(
@@ -88,7 +93,15 @@ return array(
     'sizes' => array(
         'projects' => array(
             'height' => 1000,
-        )
+        ),
+        'photos' => array(
+            'original' => array(
+                'height' => 1000
+            ),
+            'thumbnail' => array(
+                'height' => 500
+            )
+        ),
     ),
     'keywords' => array(
         'hu' => [

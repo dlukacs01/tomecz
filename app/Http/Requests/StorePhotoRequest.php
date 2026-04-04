@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class StorePhotoRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StorePhotoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,23 @@ class StorePhotoRequest extends FormRequest
      */
     public function rules(): array
     {
+        $min = config('custom.validations.filesize.calculation.min', 1);
+        $max = config('custom.validations.filesize.calculation.max', 30720);
         return [
             //
+
+            'title' => ['required', 'string', 'min:3', 'max:255'],
+            'title_en' => ['nullable', 'string', 'min:3', 'max:255'],
+            'year' => ['required', 'integer', 'min:1900', 'max:' . date('Y')],
+            'size' => ['required', 'string', 'min:3', 'max:255'],
+            'technique' => ['required', 'string', 'min:3', 'max:255'],
+            'technique_en' => ['nullable', 'string', 'min:3', 'max:255'],
+            'tags' => ['nullable', 'string', 'min:3', 'max:255', 'regex:/^[\p{L}\d\-]+(?: [\p{L}\d\-]+)*(, [\p{L}\d\-]+(?: [\p{L}\d\-]+)*){0,19}$/u'],
+            'tags_en' => ['nullable', 'string', 'min:3', 'max:255', 'regex:/^[\p{L}\d\-]+(?: [\p{L}\d\-]+)*(, [\p{L}\d\-]+(?: [\p{L}\d\-]+)*){0,19}$/u'],
+            'body' => ['nullable', 'string', 'min:3', 'max:65535'],
+            'body_en' => ['nullable', 'string', 'min:3', 'max:65535'],
+            'project_id' => ['nullable', 'integer'],
+            'original' => ['required', File::image()->min($min)->max($max)]
         ];
     }
 }

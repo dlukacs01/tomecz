@@ -5,6 +5,10 @@ namespace App\Services;
 use App\Models\Photo;
 use App\Models\Project;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\UploadedFile;
+use Intervention\Image\Drivers\Imagick\Driver;
+use Intervention\Image\Format;
+use Intervention\Image\ImageManager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PhotoService
@@ -106,6 +110,34 @@ class PhotoService
             ->where('photos.id', '>', $photo->id)
             ->orderBy('photos.id')
             ->first();
+    }
+
+
+    public function upload(UploadedFile $upload, string $filename): void
+    {
+        $image_original = ImageManager::usingDriver(Driver::class)->decode($upload);
+        $image_thumbnail = ImageManager::usingDriver(Driver::class)->decode($upload);
+
+        $height_original = config('custom.sizes.photos.original.height', 1000);
+        $height_thumbnail = config('custom.sizes.photos.thumbnail.height', 500);
+
+        $image_original->scale(height: $height_original);
+        $image_original->encodeUsingFormat(Format::WEBP);
+
+        $image_thumbnail->scale(height: $height_thumbnail);
+        $image_thumbnail->encodeUsingFormat(Format::WEBP);
+
+        $path_original = getPathForUpload(
+            config('custom.paths.photos.original.upload', 'app/public/images/photos/original'),
+            $filename
+        );
+        $path_thumbnail = getPathForUpload(
+            config('custom.paths.photos.thumbnail.upload', 'app/public/images/photos/thumbnail'),
+            $filename
+        );
+
+        $image_original->save($path_original);
+        $image_thumbnail->save($path_thumbnail);
     }
 
     // VALIDATE (project)
