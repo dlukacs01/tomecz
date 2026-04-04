@@ -54,6 +54,7 @@ return array(
         'categories' => 'Biztosan törölni szeretnéd ezt a kategóriát?',
         'projects' => 'Biztosan törölni szeretnéd ezt a projektet?',
         'photos' => 'Biztosan törölni szeretnéd ezt a képet?',
+        'exhibitions' => 'Biztosan törölni szeretnéd ezt a kiállítást?',
     ),
     'flash' => array(
         'categories' => array(

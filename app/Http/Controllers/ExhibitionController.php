@@ -31,6 +31,13 @@ class ExhibitionController extends Controller
     public function index()
     {
         //
+
+        $title = 'Kiállítások megtekintése' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        $exhibitions = $this->exhibitionService->getAllForAdminIndex();
+        return view('admin.exhibitions.index', compact(
+            'title',
+            'exhibitions'
+        ));
     }
 
     /**
