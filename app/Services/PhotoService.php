@@ -47,31 +47,6 @@ class PhotoService
         return $project->photos()->orderBy('position')->paginate(config('custom.pagination.admin', 10));
     }
 
-    // DELETE (all for project)
-    public function deleteByProject(Project $project): void
-    {
-        $photos = $project->photos;
-        $files = [];
-        foreach ($photos as $photo) {
-
-            // originals
-            $path_original = getPathForDelete(
-                config('custom.paths.photos.original.delete', 'images/photos/original'),
-                $photo->original
-            );
-            $files[] = $path_original;
-
-            // thumbnails
-            $path_thumbnail = getPathForDelete(
-                config('custom.paths.photos.thumbnail.delete', 'images/photos/thumbnail'),
-                $photo->thumbnail
-            );
-            $files[] = $path_thumbnail;
-
-        }
-        deleteMultiple($files);
-    }
-
     // VIEWS
     public function setViews(Photo $photo): void
     {
@@ -145,6 +120,49 @@ class PhotoService
 
         $image_original->save($path_original);
         $image_thumbnail->save($path_thumbnail);
+    }
+
+    // DELETE (one)
+    public function deleteFiles(Photo $photo): void
+    {
+        // original
+        $path_original = getPathForDelete(
+            config('custom.paths.photos.original.delete', 'images/photos/original'),
+            $photo->original
+        );
+        deleteOne($path_original);
+
+        // thumbnail
+        $path_thumbnail = getPathForDelete(
+            config('custom.paths.photos.thumbnail.delete', 'images/photos/thumbnail'),
+            $photo->thumbnail
+        );
+        deleteOne($path_thumbnail);
+    }
+
+    // DELETE (all for project)
+    public function deleteByProject(Project $project): void
+    {
+        $photos = $project->photos;
+        $files = [];
+        foreach ($photos as $photo) {
+
+            // originals
+            $path_original = getPathForDelete(
+                config('custom.paths.photos.original.delete', 'images/photos/original'),
+                $photo->original
+            );
+            $files[] = $path_original;
+
+            // thumbnails
+            $path_thumbnail = getPathForDelete(
+                config('custom.paths.photos.thumbnail.delete', 'images/photos/thumbnail'),
+                $photo->thumbnail
+            );
+            $files[] = $path_thumbnail;
+
+        }
+        deleteMultiple($files);
     }
 
     // VALIDATE (project)

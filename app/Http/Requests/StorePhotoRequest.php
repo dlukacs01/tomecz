@@ -37,7 +37,7 @@ class StorePhotoRequest extends FormRequest
             'tags_en' => ['nullable', 'string', 'min:3', 'max:255', 'regex:/^[\p{L}\d\-]+(?: [\p{L}\d\-]+)*(, [\p{L}\d\-]+(?: [\p{L}\d\-]+)*){0,19}$/u'],
             'body' => ['nullable', 'string', 'min:3', 'max:65535'],
             'body_en' => ['nullable', 'string', 'min:3', 'max:65535'],
-            'project_id' => ['nullable', 'integer'],
+            'project_id' => ['required', 'integer'],
             'original' => ['required', File::image()->min($min)->max($max)]
         ];
     }

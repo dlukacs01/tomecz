@@ -53,4 +53,22 @@ class Photo extends Model
             get: fn (?string $value) => app()->getLocale() === 'en' && !empty($this->body_en) ? $this->body_en : $value,
         );
     }
+
+    protected function original(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => str_contains($value, 'https://') || str_contains($value, 'http://') ? $value : asset(
+                config('custom.paths.photos.original.public', 'storage/images/photos/original') . '/' . $value
+            ),
+        );
+    }
+
+    protected function thumbnail(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => str_contains($value, 'https://') || str_contains($value, 'http://') ? $value : asset(
+                config('custom.paths.photos.thumbnail.public', 'storage/images/photos/thumbnail') . '/' . $value
+            ),
+        );
+    }
 }

@@ -20,7 +20,7 @@ class ProjectController extends Controller
 
     public function select()
     {
-        $title = 'Projekt választása' . ' &mdash; ' . config('app.name', 'Webgaléria');
+        $title = 'Projekt választása' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
         $projects = $this->projectService->getAllForAdminIndex();
         return view('admin.projects.select', compact(
             'title',

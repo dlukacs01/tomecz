@@ -82,7 +82,7 @@ class PhotoController extends Controller
     {
         //
 
-        $title = 'Kép feltöltése' . ' &mdash; ' . config('app.name', 'Webgaléria');
+        $title = 'Kép feltöltése' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
         $allowed_project = $this->projectService->atLeastOneProjectExists();
         $categories = $this->categoryService->getAllForAdminPosition();
         return view('admin.photos.create', compact(
@@ -116,7 +116,7 @@ class PhotoController extends Controller
         $inputs['body_en'] = $validated['body_en'];
 
         // fks
-        if(isset($validated['project_id'])) $inputs['project_id'] = $validated['project_id'];
+        $inputs['project_id'] = $validated['project_id'];
 
         // POSITION
         $project = Project::findOrFail($inputs['project_id']);
@@ -162,12 +162,32 @@ class PhotoController extends Controller
         ));
     }
 
+    public function pe()
+    {
+        $photo = Photo::findOrFail(request()->photoId);
+        $projects = $this->projectService->getByCategoryId(request()->categoryId);
+        return view('components.admin.partials.projects.edit', compact(
+            'projects',
+            'photo'
+        ));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Photo $photo)
     {
         //
+
+        // POLICY
+
+        $title = 'Kép szerkesztése' . ' &mdash; ' . config('app.name', 'Webgaléria');
+        $categories = $this->categoryService->getAllForAdminPosition();
+        return view('admin.photos.edit', compact(
+            'title',
+            'photo',
+            'categories'
+        ));
     }
 
     /**
@@ -176,6 +196,52 @@ class PhotoController extends Controller
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
         //
+
+        // VALIDATION
+        $validated = $request->validated();
+
+        // VALUES
+        $photo->title = $validated['title'];
+        $photo->title_en = $validated['title_en'];
+        $photo->slug = getSlug($photo->title);
+        $photo->year = $validated['year'];
+        $photo->size = $validated['size'];
+        $photo->technique = $validated['technique'];
+        $photo->technique_en = $validated['technique_en'];
+        $photo->tags = $validated['tags'];
+        $photo->tags_en = $validated['tags_en'];
+        $photo->body = $validated['body'];
+        $photo->body_en = $validated['body_en'];
+
+        // fks
+        $photo->project_id = $validated['project_id'];
+
+        // POSITION
+        $old = $photo->position;
+        $new = $photo->position = $validated['position'];
+        $photos = $photo->project->photos;
+        updatePosition($old, $new, $photos, 'photos');
+
+        // ORIGINAL
+        if (isset($validated['original'])) {
+
+            // old
+            $this->photoService->deleteFiles($photo);
+
+            // new
+            $upload = $validated['original'];
+            $filename = getFilename();
+            $photo->original = $filename;
+            $photo->thumbnail = $filename;
+            $this->photoService->upload($upload, $filename);
+        }
+
+        // SAVE, SESSION, REDIRECT
+        $photo->save();
+        return redirect()->route('admin.photo.project', $photo->project)->with('success', config(
+            'custom.flash.photos.update',
+            'A műtárgy frissítése sikeres volt.'
+        ));
     }
 
     /**
