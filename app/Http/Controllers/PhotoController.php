@@ -250,5 +250,17 @@ class PhotoController extends Controller
     public function destroy(Photo $photo)
     {
         //
+
+        // POLICY
+
+        // FILES
+        $this->photoService->deleteFiles($photo);
+
+        // SAVE, SESSION, REDIRECT
+        $photo->delete();
+        return redirect()->back()->with('success', config(
+            'custom.flash.photos.destroy',
+            'A műtárgy törlése sikeres volt.'
+        ));
     }
 }
