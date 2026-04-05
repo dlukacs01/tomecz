@@ -46,6 +46,9 @@ class StoryController extends Controller
     public function create()
     {
         //
+
+        $title = 'Hír létrehozása' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        return view('admin.stories.create', compact('title'));
     }
 
     /**
@@ -54,6 +57,33 @@ class StoryController extends Controller
     public function store(StoreStoryRequest $request)
     {
         //
+
+        // VALIDATION
+        $validated = $request->validated();
+
+        // VALUES
+        $inputs['title'] = $validated['title'];
+        $inputs['title_en'] = $validated['title_en'];
+        $inputs['slug'] = getSlug($inputs['title']);
+        $inputs['intro'] = $validated['intro'];
+        $inputs['intro_en'] = $validated['intro_en'];
+        $inputs['body'] = $validated['body'];
+        $inputs['body_en'] = $validated['body_en'];
+        $inputs['tags'] = $validated['tags'];
+        $inputs['tags_en'] = $validated['tags_en'];
+
+        // ORIGINAL
+        $upload = $validated['original'];
+        $filename = getFilename();
+        $inputs['original'] = $filename;
+        $this->storyService->upload($upload, $filename);
+
+        // SAVE, SESSION, REDIRECT
+        Story::create($inputs);
+        return redirect()->route('admin.stories.index')->with('success', config(
+            'custom.flash.stories.store',
+            'A hír létrehozása sikeres volt.'
+        ));
     }
 
     /**

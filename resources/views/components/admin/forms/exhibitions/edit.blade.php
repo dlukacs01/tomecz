@@ -103,7 +103,7 @@
 
     {{-- THUMBNAIL --}}
     <div class="mb-3">
-        <img src="{{ $exhibition->thumbnail }}" alt="{{ $exhibition->title }}" class="c-thumbnail">
+        <img src="{{ $exhibition->original }}" alt="{{ $exhibition->title }}" class="c-thumbnail">
     </div>
 
     {{-- BUTTON --}}

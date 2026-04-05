@@ -45,6 +45,15 @@ class Story extends Model
         );
     }
 
+    protected function original(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => str_contains($value, 'https://') || str_contains($value, 'http://') ? $value : asset(
+                config('custom.paths.stories.public', 'storage/images/stories') . '/' . $value
+            ),
+        );
+    }
+
     protected function formattedDate(): Attribute
     {
         return Attribute::make(
