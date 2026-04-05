@@ -6,12 +6,14 @@ use App\Models\Exhibition;
 use App\Http\Requests\StoreExhibitionRequest;
 use App\Http\Requests\UpdateExhibitionRequest;
 use App\Services\ExhibitionService;
+use App\Services\StatusService;
 
 class ExhibitionController extends Controller
 {
 
     public function __construct(
         protected ExhibitionService $exhibitionService,
+        protected StatusService $statusService
     )
     {}
 
@@ -46,6 +48,13 @@ class ExhibitionController extends Controller
     public function create()
     {
         //
+
+        $title = 'Kiállítás feltöltése' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        $statuses = $this->statusService->getAll();
+        return view('admin.exhibitions.create', compact(
+            'title',
+            'statuses'
+        ));
     }
 
     /**
@@ -54,6 +63,32 @@ class ExhibitionController extends Controller
     public function store(StoreExhibitionRequest $request)
     {
         //
+
+        // VALIDATION
+        $validated = $request->validated();
+
+        // VALUES
+        $inputs['title'] = $validated['title'];
+        $inputs['title_en'] = $validated['title_en'];
+        $inputs['slug'] = getSlug($inputs['title']);
+        $inputs['year'] = $validated['year'];
+        $inputs['location'] = $validated['location'];
+
+        // fks
+        $inputs['status_id'] = $validated['status_id'];
+
+        // ORIGINAL
+        $upload = $validated['original'];
+        $filename = getFilename();
+        $inputs['original'] = $filename;
+        $this->exhibitionService->upload($upload, $filename);
+
+        // SAVE, SESSION, REDIRECT
+        Exhibition::create($inputs);
+        return redirect()->route('admin.exhibitions.index')->with('success', config(
+            'custom.flash.exhibitions.store',
+            'A kiállítás létrehozása sikeres volt.'
+        ));
     }
 
     /**

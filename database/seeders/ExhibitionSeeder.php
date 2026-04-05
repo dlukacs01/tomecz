@@ -20,6 +20,7 @@ class ExhibitionSeeder extends Seeder
                 'status_id' => 2,
                 'title' => 'Aktuális',
                 'title_en' => 'Current',
+                'slug' => 'aktualis',
                 'year' => (int) date('Y'),
                 'location' => fake()->address,
                 'original' => 'https://placehold.co/1000x1000', // fake()->imageUrl(1000, 1000)
@@ -30,6 +31,7 @@ class ExhibitionSeeder extends Seeder
                 'status_id' => 3,
                 'title' => 'Közelgő',
                 'title_en' => 'Upcoming',
+                'slug' => 'kozelgo',
                 'year' => (int) date('Y') + 1,
                 'location' => fake()->address,
                 'original' => 'https://placehold.co/1000x1000', // fake()->imageUrl(1000, 1000)

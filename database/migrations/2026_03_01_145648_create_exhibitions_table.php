@@ -19,6 +19,7 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('title_en');
+            $table->string('slug');
             $table->integer('year');
             $table->string('location');
             $table->string('original');

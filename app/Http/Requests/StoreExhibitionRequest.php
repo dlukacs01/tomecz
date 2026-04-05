@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 
 class StoreExhibitionRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreExhibitionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +23,17 @@ class StoreExhibitionRequest extends FormRequest
      */
     public function rules(): array
     {
+        $min = config('custom.validations.filesize.calculation.min', 1);
+        $max = config('custom.validations.filesize.calculation.max', 30720);
         return [
             //
+
+            'title' => ['required', 'string', 'min:3', 'max:255'],
+            'title_en' => ['nullable', 'string', 'min:3', 'max:255'],
+            'year' => ['required', 'integer', 'min:1900', Rule::max(now()->year + 10)],
+            'location' => ['required', 'string', 'min:3', 'max:255'],
+            'status_id' => ['required', 'integer'],
+            'original' => ['required', File::image()->min($min)->max($max)]
         ];
     }
 }

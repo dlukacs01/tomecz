@@ -72,6 +72,11 @@ return array(
             'update' => 'A műtárgy frissítése sikeres volt.',
             'destroy' => 'A műtárgy törlése sikeres volt.'
         ),
+        'exhibitions' => array(
+            'store' => 'A kiállítás feltöltése sikeres volt.',
+            'update' => 'A kiállítás frissítése sikeres volt.',
+            'destroy' => 'A kiállítás törlése sikeres volt.'
+        ),
     ),
     'paths' => array(
         'projects' => array(
@@ -91,6 +96,11 @@ return array(
                 'delete' => 'images/photos/thumbnail'
             ),
         ),
+        'exhibitions' => array(
+            'upload' => 'app/public/images/exhibitions',
+            'public' => 'storage/images/exhibitions',
+            'delete' => 'images/exhibitions'
+        ),
     ),
     'sizes' => array(
         'projects' => array(
@@ -103,6 +113,9 @@ return array(
             'thumbnail' => array(
                 'height' => 500
             )
+        ),
+        'exhibitions' => array(
+            'height' => 1000,
         ),
     ),
     'keywords' => array(

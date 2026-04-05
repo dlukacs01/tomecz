@@ -189,6 +189,7 @@ class DatabaseSeeder extends Seeder
         Exhibition::factory(config('custom.seeders.exhibitions', 10))->sequence(fn (Sequence $sequence) => [
             'title' => 'Archív' . '-' . $sequence->index + 1,
             'title_en' => 'Archive' . '-' . $sequence->index + 1,
+            'slug' => 'archiv' . '-' . $sequence->index + 1,
             'year' => (int) date('Y') - (config('custom.seeders.exhibitions', 10) - ($sequence->index)),
         ])->create();
 
