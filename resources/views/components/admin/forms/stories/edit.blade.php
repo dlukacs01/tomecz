@@ -1,5 +1,6 @@
-<form action="{{ route('admin.stories.store') }}" method="post" enctype="multipart/form-data" id="stories-create">
+<form action="{{ route('admin.stories.update', $story) }}" method="post" enctype="multipart/form-data" id="stories-edit">
     @csrf
+    @method('PATCH')
 
     {{-- TITLE --}}
     <div class="mb-3">
@@ -14,7 +15,7 @@
                autofocus
                autocomplete="title"
                placeholder="A hír címe"
-               value="{{ old('title') }}" />
+               value="{{ $story->title }}" />
         <x-forms.error :name="'title'" />
     </div>
 
@@ -29,7 +30,7 @@
                maxlength="255"
                autocomplete="title_en"
                placeholder="A hír címe (angolul)"
-               value="{{ old('title_en') }}" />
+               value="{{ $story->title_en }}" />
         <x-forms.error :name="'title_en'" />
     </div>
 
@@ -43,7 +44,7 @@
                   maxlength="65535"
                   autocomplete="intro"
                   placeholder="Bevezető..."
-                  rows="10">{{ old('intro') }}</textarea>
+                  rows="10">{{ $story->intro }}</textarea>
         <x-forms.error :name="'intro'" />
     </div>
 
@@ -57,7 +58,7 @@
                   maxlength="65535"
                   autocomplete="intro_en"
                   placeholder="Bevezető... (angolul)"
-                  rows="10">{{ old('intro_en') }}</textarea>
+                  rows="10">{{ $story->intro_en }}</textarea>
         <x-forms.error :name="'intro_en'" />
     </div>
 
@@ -71,7 +72,7 @@
                   maxlength="65535"
                   autocomplete="body"
                   placeholder="Tartalom..."
-                  rows="10">{{ old('body') }}</textarea>
+                  rows="10">{{ $story->body }}</textarea>
         <x-forms.error :name="'body'" />
     </div>
 
@@ -85,7 +86,7 @@
                   maxlength="65535"
                   autocomplete="body_en"
                   placeholder="Tartalom... (angolul)"
-                  rows="10">{{ old('body_en') }}</textarea>
+                  rows="10">{{ $story->body_en }}</textarea>
         <x-forms.error :name="'body_en'" />
     </div>
 
@@ -106,7 +107,7 @@
                title="Vesszővel és szóközzel elválasztott értékek."
                autocomplete="tags"
                placeholder="A hírhez tartozó keresőszavak"
-               value="{{ old('tags') }}" />
+               value="{{ $story->tags }}" />
         <x-forms.error :name="'tags'" />
     </div>
 
@@ -123,7 +124,7 @@
                title="Vesszővel és szóközzel elválasztott értékek."
                autocomplete="tags_en"
                placeholder="A hírhez tartozó keresőszavak (angolul)"
-               value="{{ old('tags_en') }}" />
+               value="{{ $story->tags_en }}" />
         <x-forms.error :name="'tags_en'" />
     </div>
 
@@ -139,9 +140,13 @@
                name="original"
                id="original"
                class="form-control @error('original') is-invalid @enderror"
-               required
                accept="image/*" />
         <x-forms.error :name="'original'" />
+    </div>
+
+    {{-- THUMBNAIL --}}
+    <div class="mb-3">
+        <img src="{{ $story->original }}" alt="{{ $story->title }}" class="c-thumbnail">
     </div>
 
     {{-- BUTTON --}}

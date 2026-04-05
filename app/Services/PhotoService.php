@@ -94,7 +94,7 @@ class PhotoService
             ->first();
     }
 
-
+    // UPLOAD
     public function upload(UploadedFile $upload, string $filename): void
     {
         $image_original = ImageManager::usingDriver(Driver::class)->decode($upload);

@@ -36,7 +36,8 @@ class StoryService
         return array_filter(explode(", ", $story->tags));
     }
 
-    public function upload(mixed $upload, string $filename)
+    // UPLOAD
+    public function upload(mixed $upload, string $filename): void
     {
         $image = ImageManager::usingDriver(Driver::class)->decode($upload);
         $height = config('custom.sizes.stories.height', 1000);
@@ -47,6 +48,16 @@ class StoryService
             $filename
         );
         $image->save($path);
+    }
+
+    // DELETE (one)
+    public function deleteFiles(Story $story): void
+    {
+        $path = getPathForDelete(
+            config('custom.paths.stories.delete', 'images/stories'),
+            $story->original
+        );
+        deleteOne($path);
     }
 
     public function validateShowRoute(string $story_slug, Story $story): void

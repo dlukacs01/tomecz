@@ -111,6 +111,14 @@ class StoryController extends Controller
     public function edit(Story $story)
     {
         //
+
+        // POLICY
+
+        $title = 'Hír szerkesztése' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        return view('admin.stories.edit', compact(
+            'title',
+            'story'
+        ));
     }
 
     /**
@@ -119,6 +127,46 @@ class StoryController extends Controller
     public function update(UpdateStoryRequest $request, Story $story)
     {
         //
+
+        // VALIDATION
+        $validated = $request->validated();
+
+        // VALUES
+        $story->title = $validated['title'];
+        $story->title_en = $validated['title_en'];
+        $story->slug = getSlug($story->title);
+        $story->intro = $validated['intro'];
+        $story->intro_en = $validated['intro_en'];
+        $story->body = $validated['body'];
+        $story->body_en = $validated['body_en'];
+        $story->tags = $validated['tags'];
+        $story->tags_en = $validated['tags_en'];
+
+        // ORIGINAL
+        $upload = $validated['original'];
+        $filename = getFilename();
+        $story->original = $filename;
+        $this->storyService->upload($upload, $filename);
+
+        // ORIGINAL
+        if (isset($validated['original'])) {
+
+            // old
+            $this->storyService->deleteFiles($story);
+
+            // new
+            $upload = $validated['original'];
+            $filename = getFilename();
+            $story->original = $filename;
+            $this->storyService->upload($upload, $filename);
+        }
+
+        // SAVE, SESSION, REDIRECT
+        $story->save();
+        return redirect()->route('admin.stories.index')->with('success', config(
+            'custom.flash.stories.update',
+            'A hír frissítése sikeres volt.'
+        ));
     }
 
     /**
