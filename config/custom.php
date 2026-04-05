@@ -97,9 +97,16 @@ return array(
             ),
         ),
         'exhibitions' => array(
-            'upload' => 'app/public/images/exhibitions',
-            'public' => 'storage/images/exhibitions',
-            'delete' => 'images/exhibitions'
+            'original' => array(
+                'upload' => 'app/public/images/exhibitions/original',
+                'public' => 'storage/images/exhibitions/original',
+                'delete' => 'images/exhibitions/original'
+            ),
+            'thumbnail' => array(
+                'upload' => 'app/public/images/exhibitions/thumbnail',
+                'public' => 'storage/images/exhibitions/thumbnail',
+                'delete' => 'images/exhibitions/thumbnail'
+            ),
         ),
     ),
     'sizes' => array(
@@ -115,7 +122,12 @@ return array(
             )
         ),
         'exhibitions' => array(
-            'height' => 1000,
+            'original' => array(
+                'height' => 1000
+            ),
+            'thumbnail' => array(
+                'height' => 500
+            )
         ),
     ),
     'keywords' => array(

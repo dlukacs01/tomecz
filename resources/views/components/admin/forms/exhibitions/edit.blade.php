@@ -1,5 +1,6 @@
-<form action="{{ route('admin.exhibitions.store') }}" method="post" enctype="multipart/form-data" id="exhibitions-create">
+<form action="{{ route('admin.exhibitions.update', $exhibition) }}" method="post" enctype="multipart/form-data" id="exhibitions-edit">
     @csrf
+    @method('PATCH')
 
     {{-- TITLE --}}
     <div class="mb-3">
@@ -14,7 +15,7 @@
                autofocus
                autocomplete="title"
                placeholder="A kiállítás címe"
-               value="{{ old('title') }}" />
+               value="{{ $exhibition->title }}" />
         <x-forms.error :name="'title'" />
     </div>
 
@@ -29,7 +30,7 @@
                maxlength="255"
                autocomplete="title_en"
                placeholder="A kiállítás címe (angolul)"
-               value="{{ old('title_en') }}" />
+               value="{{ $exhibition->title_en }}" />
         <x-forms.error :name="'title_en'" />
     </div>
 
@@ -44,8 +45,7 @@
                min="1900"
                max="{{ now()->year + 10 }}"
                autocomplete="year"
-               placeholder="A kiállítás éve"
-               value="{{ old('year') }}" />
+               value="{{ $exhibition->year }}" />
         <x-forms.error :name="'year'" />
     </div>
 
@@ -61,7 +61,7 @@
                maxlength="255"
                autocomplete="location"
                placeholder="A kiállítás helyszíne"
-               value="{{ old('location') }}" />
+               value="{{ $exhibition->location }}" />
         <x-forms.error :name="'location'" />
     </div>
 
@@ -76,7 +76,7 @@
 
             <option value="" selected disabled>Válassz státuszt</option>
             @foreach($statuses as $status)
-                <option value="{{ $status->id }}" {{ $status->id == old('status_id') ? 'selected' : '' }}>
+                <option value="{{ $status->id }}" {{ $status->id == $exhibition->status_id ? 'selected' : '' }}>
                     {{ $status->name }}
                 </option>
             @endforeach
@@ -87,7 +87,7 @@
 
     {{-- ORIGINAL --}}
     <div class="mb-3">
-        <label for="original" class="form-label mb-0">Képfájl</label>
+        <label for="original" class="form-label mb-0">Meghívó</label>
         <p class="small mb-0">Legfeljebb {{ config('custom.validations.filesize.display.max', 30) }} MB-os fájlméret!</p>
         <p class="small mb-2">
             Megengedett formátumok: {{ getExtensions() }}.
@@ -97,9 +97,13 @@
                name="original"
                id="original"
                class="form-control @error('original') is-invalid @enderror"
-               required
                accept="image/*" />
         <x-forms.error :name="'original'" />
+    </div>
+
+    {{-- THUMBNAIL --}}
+    <div class="mb-3">
+        <img src="{{ $exhibition->thumbnail }}" alt="{{ $exhibition->title }}" class="c-thumbnail">
     </div>
 
     {{-- BUTTON --}}

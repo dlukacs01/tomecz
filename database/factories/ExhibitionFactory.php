@@ -22,6 +22,7 @@ class ExhibitionFactory extends Factory
             'status_id' => 1, // archív
             'location' => fake()->address,
             'original' => 'https://placehold.co/1000x1000', // fake()->imageUrl(1000, 1000)
+            'thumbnail' => 'https://placehold.co/500x500', // fake()->imageUrl(500, 500)
             'created_at' => now(),
             'updated_at' => now()
         ];

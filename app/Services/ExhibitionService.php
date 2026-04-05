@@ -38,14 +38,46 @@ class ExhibitionService
     // UPLOAD
     public function upload(UploadedFile $upload, string $filename): void
     {
-        $image = ImageManager::usingDriver(Driver::class)->decode($upload);
-        $height = config('custom.sizes.exhibitions.height', 1000);
-        $image->scale(height: $height);
-        $image->encodeUsingFormat(Format::WEBP);
-        $path = getPathForUpload(
-            config('custom.paths.exhibitions.upload', 'app/public/images/exhibitions'),
+        $image_original = ImageManager::usingDriver(Driver::class)->decode($upload);
+        $image_thumbnail = ImageManager::usingDriver(Driver::class)->decode($upload);
+
+        $height_original = config('custom.sizes.exhibitions.original.height', 1000);
+        $height_thumbnail = config('custom.sizes.exhibitions.thumbnail.height', 500);
+
+        $image_original->scale(height: $height_original);
+        $image_original->encodeUsingFormat(Format::WEBP);
+
+        $image_thumbnail->scale(height: $height_thumbnail);
+        $image_thumbnail->encodeUsingFormat(Format::WEBP);
+
+        $path_original = getPathForUpload(
+            config('custom.paths.exhibitions.original.upload', 'app/public/images/exhibitions/original'),
             $filename
         );
-        $image->save($path);
+        $path_thumbnail = getPathForUpload(
+            config('custom.paths.exhibitions.thumbnail.upload', 'app/public/images/exhibitions/thumbnail'),
+            $filename
+        );
+
+        $image_original->save($path_original);
+        $image_thumbnail->save($path_thumbnail);
+    }
+
+    // DELETE (one)
+    public function deleteFiles(Exhibition $exhibition): void
+    {
+        // original
+        $path_original = getPathForDelete(
+            config('custom.paths.exhibitions.original.delete', 'images/exhibitions/original'),
+            $exhibition->original
+        );
+        deleteOne($path_original);
+
+        // thumbnail
+        $path_thumbnail = getPathForDelete(
+            config('custom.paths.exhibitions.thumbnail.delete', 'images/exhibitions/thumbnail'),
+            $exhibition->thumbnail
+        );
+        deleteOne($path_thumbnail);
     }
 }

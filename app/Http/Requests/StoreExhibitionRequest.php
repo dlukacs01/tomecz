@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
 
 class StoreExhibitionRequest extends FormRequest
@@ -30,7 +29,7 @@ class StoreExhibitionRequest extends FormRequest
 
             'title' => ['required', 'string', 'min:3', 'max:255'],
             'title_en' => ['nullable', 'string', 'min:3', 'max:255'],
-            'year' => ['required', 'integer', 'min:1900', Rule::max(now()->year + 10)],
+            'year' => ['required', 'integer', 'min:1900', 'max:' . (now()->year + 10)],
             'location' => ['required', 'string', 'min:3', 'max:255'],
             'status_id' => ['required', 'integer'],
             'original' => ['required', File::image()->min($min)->max($max)]

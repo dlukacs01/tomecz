@@ -81,6 +81,7 @@ class ExhibitionController extends Controller
         $upload = $validated['original'];
         $filename = getFilename();
         $inputs['original'] = $filename;
+        $inputs['thumbnail'] = $filename;
         $this->exhibitionService->upload($upload, $filename);
 
         // SAVE, SESSION, REDIRECT
@@ -105,6 +106,16 @@ class ExhibitionController extends Controller
     public function edit(Exhibition $exhibition)
     {
         //
+
+        // POLICY
+
+        $title = 'Kiállítás szerkesztése' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        $statuses = $this->statusService->getAll();
+        return view('admin.exhibitions.edit', compact(
+            'title',
+            'exhibition',
+            'statuses'
+        ));
     }
 
     /**
@@ -113,6 +124,40 @@ class ExhibitionController extends Controller
     public function update(UpdateExhibitionRequest $request, Exhibition $exhibition)
     {
         //
+
+        // VALIDATION
+        $validated = $request->validated();
+
+        // VALUES
+        $exhibition->title = $validated['title'];
+        $exhibition->title_en = $validated['title_en'];
+        $exhibition->slug = getSlug($exhibition->title);
+        $exhibition->year = $validated['year'];
+        $exhibition->location = $validated['location'];
+
+        // fks
+        $exhibition->status_id = $validated['status_id'];
+
+        // ORIGINAL
+        if (isset($validated['original'])) {
+
+            // old
+            $this->exhibitionService->deleteFiles($exhibition);
+
+            // new
+            $upload = $validated['original'];
+            $filename = getFilename();
+            $exhibition->original = $filename;
+            $exhibition->thumbnail = $filename;
+            $this->exhibitionService->upload($upload, $filename);
+        }
+
+        // SAVE, SESSION, REDIRECT
+        $exhibition->save();
+        return redirect()->route('admin.exhibitions.index')->with('success', config(
+            'custom.flash.exhibitions.update',
+            'A kiállítás frissítése sikeres volt.'
+        ));
     }
 
     /**

@@ -37,7 +37,16 @@ class Exhibition extends Model
     {
         return Attribute::make(
             get: fn (string $value) => str_contains($value, 'https://') || str_contains($value, 'http://') ? $value : asset(
-                config('custom.paths.exhibitions.public', 'storage/images/exhibitions') . '/' . $value
+                config('custom.paths.exhibitions.original.public', 'storage/images/exhibitions/original') . '/' . $value
+            ),
+        );
+    }
+
+    protected function thumbnail(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => str_contains($value, 'https://') || str_contains($value, 'http://') ? $value : asset(
+                config('custom.paths.exhibitions.thumbnail.public', 'storage/images/exhibitions/thumbnail') . '/' . $value
             ),
         );
     }

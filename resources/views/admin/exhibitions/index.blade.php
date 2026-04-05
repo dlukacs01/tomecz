@@ -16,7 +16,6 @@
                 {{-- HEAD --}}
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Meghívó</th>
                     <th>Cím</th>
                     <th>Státusz</th>
@@ -32,7 +31,6 @@
                 @foreach($exhibitions as $exhibition)
 
                     <tr>
-                        <td class="align-middle">{{ $exhibition->id }}</td>
                         <td>
                             <img src="{{ $exhibition->original }}" alt="{{ $exhibition->title }}" class="c-thumbnail">
                         </td>
