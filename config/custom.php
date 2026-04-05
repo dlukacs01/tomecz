@@ -54,6 +54,7 @@ return array(
         'categories' => 'Biztosan törölni szeretnéd ezt a kategóriát?',
         'projects' => 'Biztosan törölni szeretnéd ezt a projektet?',
         'photos' => 'Biztosan törölni szeretnéd ezt a képet?',
+        'videos' => 'Biztosan törölni szeretnéd ezt a videót?',
         'exhibitions' => 'Biztosan törölni szeretnéd ezt a kiállítást?',
         'stories' => 'Biztosan törölni szeretnéd ezt a hírt?'
     ),
@@ -72,6 +73,11 @@ return array(
             'store' => 'A műtárgy feltöltése sikeres volt.',
             'update' => 'A műtárgy frissítése sikeres volt.',
             'destroy' => 'A műtárgy törlése sikeres volt.'
+        ),
+        'videos' => array(
+            'store' => 'A videó létrehozása sikeres volt.',
+            'update' => 'A videó frissítése sikeres volt.',
+            'destroy' => 'A videó törlése sikeres volt.'
         ),
         'exhibitions' => array(
             'store' => 'A kiállítás feltöltése sikeres volt.',
@@ -102,6 +108,11 @@ return array(
                 'delete' => 'images/photos/thumbnail'
             ),
         ),
+        'videos' => array(
+            'upload' => 'app/public/images/videos',
+            'public' => 'storage/images/videos',
+            'delete' => 'images/videos'
+        ),
         'exhibitions' => array(
             'upload' => 'app/public/images/exhibitions',
             'public' => 'storage/images/exhibitions',
@@ -124,6 +135,9 @@ return array(
             'thumbnail' => array(
                 'height' => 500
             )
+        ),
+        'videos' => array(
+            'height' => 1000,
         ),
         'exhibitions' => array(
             'height' => 1000,

@@ -13,11 +13,13 @@ use Intervention\Image\ImageManager;
 class ExhibitionService
 {
 
+    // HOME
     public function getAll(): Collection
     {
-        return Exhibition::orderbyDesc('id')->get();
+        return Exhibition::latest('id')->get();
     }
 
+    // ADMIN
     public function getAllForAdminIndex(): LengthAwarePaginator
     {
         return Exhibition::with('status')

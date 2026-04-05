@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Video;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class VideoService
 {
@@ -16,10 +17,16 @@ class VideoService
             ->get();
     }
 
-    // ALL
+    // ALL (home)
     public function getAll(): Collection
     {
         return Video::latest('id')->get();
+    }
+
+    // ALL (admin)
+    public function getAllForAdminIndex(): LengthAwarePaginator
+    {
+        return Video::latest('id')->paginate(config('custom.pagination.admin', 10));
     }
 
     // SEARCH
@@ -36,7 +43,7 @@ class VideoService
                     ->orWhere('tags_en', 'LIKE', $searchPattern);
             }
         })
-        ->orderByDesc('id')
+        ->latest('id')
         ->get();
     }
 }

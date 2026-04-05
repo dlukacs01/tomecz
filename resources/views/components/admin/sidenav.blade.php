@@ -47,6 +47,19 @@
                     </nav>
                 </div>
 
+                {{-- VIDEOS --}}
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVideos" aria-expanded="false" aria-controls="collapseVideos">
+                    <div class="sb-nav-link-icon"><i class="fas fa-video"></i></div>
+                    Videók
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseVideos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ route('admin.videos.create') }}">Videó létrehozása</a>
+                        <a class="nav-link" href="{{ route('admin.videos.index') }}">Videók megtekintése</a>
+                    </nav>
+                </div>
+
                 {{-- OTHER --}}
                 <div class="sb-sidenav-menu-heading">Egyéb</div>
 

@@ -18,7 +18,7 @@ class PhotoService
     public function getByProject(Project $project): LengthAwarePaginator
     {
         return $project->photos()
-            ->orderByDesc('id')
+            ->latest('id')
             ->paginate(config('custom.pagination.photos', 10));
     }
 
@@ -36,7 +36,7 @@ class PhotoService
                         ->orWhere('tags_en', 'LIKE', $searchPattern);
                 }
             })
-            ->orderByDesc('id')
+            ->latest('id')
             ->paginate(config('custom.pagination.photos', 10))
             ->withQueryString();
     }

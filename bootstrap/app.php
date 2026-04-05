@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
             Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->name('admin.')->group(base_path('routes/admin/categories.php'));
             Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->name('admin.')->group(base_path('routes/admin/projects.php'));
             Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->name('admin.')->group(base_path('routes/admin/photos.php'));
+            Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->name('admin.')->group(base_path('routes/admin/videos.php'));
             Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->name('admin.')->group(base_path('routes/admin/exhibitions.php'));
             Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->name('admin.')->group(base_path('routes/admin/stories.php'));
         },

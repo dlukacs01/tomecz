@@ -5,15 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Video;
 use App\Http\Requests\StoreVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
+use App\Services\VideoService;
 
 class VideoController extends Controller
 {
+
+    public function __construct(
+        protected VideoService $videoService,
+    ){}
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
+
+        $title = 'Videók megtekintése' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        $videos = $this->videoService->getAllForAdminIndex();
+        return view('admin.videos.index', compact(
+            'title',
+            'videos'
+        ));
     }
 
     /**

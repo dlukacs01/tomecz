@@ -4,7 +4,7 @@
     <div class="container-fluid px-4">
 
         {{-- TITLE --}}
-        <h1 class="mt-4">Képek megtekintése: {{ $project->title }}</h1>
+        <h1 class="mt-4">Videók megtekintése</h1>
 
         {{-- FLASH --}}
         <x-flash/>
@@ -29,23 +29,23 @@
                 {{-- BODY --}}
                 <tbody>
 
-                @foreach($photos as $photo)
+                @foreach($videos as $video)
 
                     <tr>
-                        <td class="align-middle">{{ $photo->id }}</td>
+                        <td class="align-middle">{{ $video->id }}</td>
                         <td>
-                            <img src="{{ $photo->original }}" alt="{{ $photo->title }}" class="c-thumbnail">
+                            <img src="{{ $video->original }}" alt="{{ $video->title }}" class="c-thumbnail">
                         </td>
-                        <td class="align-middle">{{ $photo->title }}</td>
-                        <td class="align-middle">{{ $photo->views }}</td>
-                        <td class="align-middle">{{ $photo->created_at->diffForHumans() }}</td>
+                        <td class="align-middle">{{ $video->title }}</td>
+                        <td class="align-middle">{{ $video->views }}</td>
+                        <td class="align-middle">{{ $video->created_at->diffForHumans() }}</td>
                         <td class="align-middle">
-                            <a class="btn btn-primary" href="{{ route('admin.photos.edit', $photo) }}" role="button">
+                            <a class="btn btn-primary" href="{{ route('admin.videos.edit', $video) }}" role="button">
                                 Szerkesztés
                             </a>
                         </td>
                         <td class="align-middle">
-                            <x-admin.forms.photos.destroy :$photo />
+                            <x-admin.forms.videos.destroy :$video />
                         </td>
                     </tr>
 
@@ -58,7 +58,7 @@
     </div>
 
     {{-- PAGINATION --}}
-    <x-admin.pagination :objects="$photos" />
+    <x-admin.pagination :objects="$videos" />
 
 @endsection
 

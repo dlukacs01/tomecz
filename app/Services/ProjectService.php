@@ -24,7 +24,7 @@ class ProjectService
     public function getAllForAdminIndex(): LengthAwarePaginator
     {
         return Project::with(['category', 'photos'])
-            ->orderByDesc('id')
+            ->latest('id')
             ->paginate(config('custom.pagination.admin', 10));
     }
 
