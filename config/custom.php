@@ -55,6 +55,7 @@ return array(
         'projects' => 'Biztosan törölni szeretnéd ezt a projektet?',
         'photos' => 'Biztosan törölni szeretnéd ezt a képet?',
         'exhibitions' => 'Biztosan törölni szeretnéd ezt a kiállítást?',
+        'stories' => 'Biztosan törölni szeretnéd ezt a hírt?'
     ),
     'flash' => array(
         'categories' => array(
@@ -77,6 +78,11 @@ return array(
             'update' => 'A kiállítás frissítése sikeres volt.',
             'destroy' => 'A kiállítás törlése sikeres volt.'
         ),
+        'stories' => array(
+            'store' => 'A hír létrehozása sikeres volt.',
+            'update' => 'A hír frissítése sikeres volt.',
+            'destroy' => 'A hír törlése sikeres volt.'
+        ),
     ),
     'paths' => array(
         'projects' => array(
@@ -97,16 +103,14 @@ return array(
             ),
         ),
         'exhibitions' => array(
-            'original' => array(
-                'upload' => 'app/public/images/exhibitions/original',
-                'public' => 'storage/images/exhibitions/original',
-                'delete' => 'images/exhibitions/original'
-            ),
-            'thumbnail' => array(
-                'upload' => 'app/public/images/exhibitions/thumbnail',
-                'public' => 'storage/images/exhibitions/thumbnail',
-                'delete' => 'images/exhibitions/thumbnail'
-            ),
+            'upload' => 'app/public/images/exhibitions',
+            'public' => 'storage/images/exhibitions',
+            'delete' => 'images/exhibitions'
+        ),
+        'stories' => array(
+            'upload' => 'app/public/images/stories',
+            'public' => 'storage/images/stories',
+            'delete' => 'images/stories'
         ),
     ),
     'sizes' => array(
@@ -122,12 +126,10 @@ return array(
             )
         ),
         'exhibitions' => array(
-            'original' => array(
-                'height' => 1000
-            ),
-            'thumbnail' => array(
-                'height' => 500
-            )
+            'height' => 1000,
+        ),
+        'stories' => array(
+            'height' => 1000,
         ),
     ),
     'keywords' => array(

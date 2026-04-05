@@ -9,9 +9,16 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class StoryService
 {
 
+    // HOME
     public function getAll(): LengthAwarePaginator
     {
         return Story::orderbyDesc('id')->paginate(config('custom.pagination.stories', 10));
+    }
+
+    // ADMIN
+    public function getAllForAdminIndex(): LengthAwarePaginator
+    {
+        return Story::orderByDesc('id')->paginate(config('custom.pagination.admin', 10));
     }
 
     // KEYWORDS (string)

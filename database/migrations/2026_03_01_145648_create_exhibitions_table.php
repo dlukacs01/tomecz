@@ -23,7 +23,6 @@ return new class extends Migration
             $table->integer('year');
             $table->string('location');
             $table->string('original');
-            $table->string('thumbnail');
 
             $table->timestamps();
         });

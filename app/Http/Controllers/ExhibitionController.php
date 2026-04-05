@@ -81,7 +81,6 @@ class ExhibitionController extends Controller
         $upload = $validated['original'];
         $filename = getFilename();
         $inputs['original'] = $filename;
-        $inputs['thumbnail'] = $filename;
         $this->exhibitionService->upload($upload, $filename);
 
         // SAVE, SESSION, REDIRECT
@@ -148,7 +147,6 @@ class ExhibitionController extends Controller
             $upload = $validated['original'];
             $filename = getFilename();
             $exhibition->original = $filename;
-            $exhibition->thumbnail = $filename;
             $this->exhibitionService->upload($upload, $filename);
         }
 

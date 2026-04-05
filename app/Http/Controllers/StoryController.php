@@ -31,6 +31,13 @@ class StoryController extends Controller
     public function index()
     {
         //
+
+        $title = 'Hírek megtekintése' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        $stories = $this->storyService->getAllForAdminIndex();
+        return view('admin.stories.index', compact(
+            'title',
+            'stories'
+        ));
     }
 
     /**
