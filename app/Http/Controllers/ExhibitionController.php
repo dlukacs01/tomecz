@@ -166,5 +166,17 @@ class ExhibitionController extends Controller
     public function destroy(Exhibition $exhibition)
     {
         //
+
+        // POLICY
+
+        // FILES
+        $this->exhibitionService->deleteFiles($exhibition);
+
+        // SAVE, SESSION, REDIRECT
+        $exhibition->delete();
+        return redirect()->back()->with('success', config(
+            'custom.flash.exhibitions.destroy',
+            'A kiállítás törlése sikeres volt.'
+        ));
     }
 }
