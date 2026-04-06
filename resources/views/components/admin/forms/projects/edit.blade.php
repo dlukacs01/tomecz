@@ -43,6 +43,7 @@
                name="title_en"
                id="title_en"
                class="form-control @error('title_en') is-invalid @enderror"
+               required
                minlength="3"
                maxlength="255"
                autocomplete="title_en"

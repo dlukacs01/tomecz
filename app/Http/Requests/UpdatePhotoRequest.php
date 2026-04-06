@@ -29,15 +29,15 @@ class UpdatePhotoRequest extends FormRequest
 
             'position' => ['required', 'integer', 'min:1', 'max:1000000000'],
             'title' => ['required', 'string', 'min:3', 'max:255'],
-            'title_en' => ['nullable', 'string', 'min:3', 'max:255'],
+            'title_en' => ['required', 'string', 'min:3', 'max:255'],
             'year' => ['required', 'integer', 'min:1900', 'max:' . date('Y')],
             'size' => ['required', 'string', 'min:3', 'max:255'],
             'technique' => ['required', 'string', 'min:3', 'max:255'],
-            'technique_en' => ['nullable', 'string', 'min:3', 'max:255'],
-            'tags' => ['nullable', 'string', 'min:3', 'max:255', 'regex:/^[\p{L}\d\-]+(?: [\p{L}\d\-]+)*(, [\p{L}\d\-]+(?: [\p{L}\d\-]+)*){0,19}$/u'],
-            'tags_en' => ['nullable', 'string', 'min:3', 'max:255', 'regex:/^[\p{L}\d\-]+(?: [\p{L}\d\-]+)*(, [\p{L}\d\-]+(?: [\p{L}\d\-]+)*){0,19}$/u'],
+            'technique_en' => ['required', 'string', 'min:3', 'max:255'],
             'body' => ['nullable', 'string', 'min:3', 'max:65535'],
             'body_en' => ['nullable', 'string', 'min:3', 'max:65535'],
+            'tags' => ['required', 'string', 'min:3', 'max:255', 'regex:/^[\p{L}\d\-]+(?: [\p{L}\d\-]+)*(, [\p{L}\d\-]+(?: [\p{L}\d\-]+)*){0,19}$/u'],
+            'tags_en' => ['required', 'string', 'min:3', 'max:255', 'regex:/^[\p{L}\d\-]+(?: [\p{L}\d\-]+)*(, [\p{L}\d\-]+(?: [\p{L}\d\-]+)*){0,19}$/u'],
             'project_id' => ['required', 'integer'],
             'original' => ['nullable', File::image()->min($min)->max($max)]
         ];

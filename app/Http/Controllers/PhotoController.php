@@ -110,10 +110,10 @@ class PhotoController extends Controller
         $inputs['size'] = $validated['size'];
         $inputs['technique'] = $validated['technique'];
         $inputs['technique_en'] = $validated['technique_en'];
-        $inputs['tags'] = $validated['tags'];
-        $inputs['tags_en'] = $validated['tags_en'];
         $inputs['body'] = $validated['body'];
         $inputs['body_en'] = $validated['body_en'];
+        $inputs['tags'] = $validated['tags'];
+        $inputs['tags_en'] = $validated['tags_en'];
 
         // fks
         $inputs['project_id'] = $validated['project_id'];
@@ -127,7 +127,6 @@ class PhotoController extends Controller
         $upload = $validated['original'];
         $filename = getFilename();
         $inputs['original'] = $filename;
-        $inputs['thumbnail'] = $filename;
         $this->photoService->upload($upload, $filename);
 
         // SAVE, SESSION, REDIRECT
@@ -208,10 +207,10 @@ class PhotoController extends Controller
         $photo->size = $validated['size'];
         $photo->technique = $validated['technique'];
         $photo->technique_en = $validated['technique_en'];
-        $photo->tags = $validated['tags'];
-        $photo->tags_en = $validated['tags_en'];
         $photo->body = $validated['body'];
         $photo->body_en = $validated['body_en'];
+        $photo->tags = $validated['tags'];
+        $photo->tags_en = $validated['tags_en'];
 
         // fks
         $photo->project_id = $validated['project_id'];
@@ -232,7 +231,6 @@ class PhotoController extends Controller
             $upload = $validated['original'];
             $filename = getFilename();
             $photo->original = $filename;
-            $photo->thumbnail = $filename;
             $this->photoService->upload($upload, $filename);
         }
 

@@ -26,7 +26,7 @@ class UpdateCategoryRequest extends FormRequest
 
             'position' => ['required', 'integer', 'min:1', 'max:1000000000'],
             'name' => ['required', 'string', 'min:3', 'max:255'],
-            'name_en' => ['nullable', 'string', 'min:3', 'max:255']
+            'name_en' => ['required', 'string', 'min:3', 'max:255']
         ];
     }
 }

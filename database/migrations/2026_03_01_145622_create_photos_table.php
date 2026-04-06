@@ -26,13 +26,12 @@ return new class extends Migration
             $table->string('technique');
             $table->string('technique_en');
 
-            $table->string('tags')->index();
-            $table->string('tags_en')->index();
             $table->text('body')->nullable();
             $table->text('body_en')->nullable();
+            $table->string('tags')->index();
+            $table->string('tags_en')->index();
 
             $table->string('original');
-            $table->string('thumbnail');
 
             $table->integer('views')->default(0);
 

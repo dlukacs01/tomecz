@@ -58,16 +58,7 @@ class Photo extends Model
     {
         return Attribute::make(
             get: fn (string $value) => str_contains($value, 'https://') || str_contains($value, 'http://') ? $value : asset(
-                config('custom.paths.photos.original.public', 'storage/images/photos/original') . '/' . $value
-            ),
-        );
-    }
-
-    protected function thumbnail(): Attribute
-    {
-        return Attribute::make(
-            get: fn (string $value) => str_contains($value, 'https://') || str_contains($value, 'http://') ? $value : asset(
-                config('custom.paths.photos.thumbnail.public', 'storage/images/photos/thumbnail') . '/' . $value
+                config('custom.paths.photos.public', 'storage/images/photos') . '/' . $value
             ),
         );
     }

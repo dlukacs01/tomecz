@@ -143,12 +143,6 @@ class StoryController extends Controller
         $story->tags_en = $validated['tags_en'];
 
         // ORIGINAL
-        $upload = $validated['original'];
-        $filename = getFilename();
-        $story->original = $filename;
-        $this->storyService->upload($upload, $filename);
-
-        // ORIGINAL
         if (isset($validated['original'])) {
 
             // old

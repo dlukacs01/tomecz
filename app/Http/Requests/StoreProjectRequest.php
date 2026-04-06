@@ -28,7 +28,7 @@ class StoreProjectRequest extends FormRequest
             //
 
             'title' => ['required', 'string', 'min:3', 'max:255'],
-            'title_en' => ['nullable', 'string', 'min:3', 'max:255'],
+            'title_en' => ['required', 'string', 'min:3', 'max:255'],
             'year' => ['required', 'integer', 'min:1900', 'max:' . date('Y')],
             'category_id' => ['required', 'integer'],
             'original' => ['required', File::image()->min($min)->max($max)]

@@ -25,6 +25,7 @@
                name="title_en"
                id="title_en"
                class="form-control @error('title_en') is-invalid @enderror"
+               required
                minlength="3"
                maxlength="255"
                autocomplete="title_en"
@@ -88,50 +89,13 @@
                name="technique_en"
                id="technique_en"
                class="form-control @error('technique_en') is-invalid @enderror"
+               required
                minlength="3"
                maxlength="255"
                autocomplete="technique_en"
                placeholder="Milyen technikával készült (angolul)"
                value="{{ old('technique_en') }}" />
         <x-forms.error :name="'technique_en'" />
-    </div>
-
-    {{--TAGS --}}
-    <div class="mb-3">
-        <label for="tags" class="form-label mb-0">Keresőszavak</label>
-        <p class="small mb-2">
-            Vesszővel és szóközzel elválasztott, akár többszavas értékek. Pl.: virágok, növények, természet, trópusi esőerdő.
-            Legfeljebb 20 érték a megengedett.
-        </p>
-        <input type="text"
-               name="tags"
-               id="tags"
-               class="form-control @error('tags') is-invalid @enderror"
-               minlength="3"
-               maxlength="255"
-               pattern="^[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+(?: [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+)*(, [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+(?: [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+)*){0,19}$"
-               title="Vesszővel és szóközzel elválasztott értékek."
-               autocomplete="tags"
-               placeholder="A műtárgyhoz tartozó keresőszavak"
-               value="{{ old('tags') }}" />
-        <x-forms.error :name="'tags'" />
-    </div>
-
-    {{--TAGS_EN --}}
-    <div class="mb-3">
-        <label for="tags_en" class="form-label">Keresőszavak (angolul)</label>
-        <input type="text"
-               name="tags_en"
-               id="tags_en"
-               class="form-control @error('tags_en') is-invalid @enderror"
-               minlength="3"
-               maxlength="255"
-               pattern="^[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+(?: [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+)*(, [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+(?: [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+)*){0,19}$"
-               title="Vesszővel és szóközzel elválasztott értékek."
-               autocomplete="tags_en"
-               placeholder="A műtárgyhoz tartozó keresőszavak (angolul)"
-               value="{{ old('tags_en') }}" />
-        <x-forms.error :name="'tags_en'" />
     </div>
 
     {{-- BODY --}}
@@ -160,6 +124,46 @@
                   placeholder="Leírás, ismertető, megjegyzések... (angolul)"
                   rows="10">{{ old('body_en') }}</textarea>
         <x-forms.error :name="'body_en'" />
+    </div>
+
+    {{--TAGS --}}
+    <div class="mb-3">
+        <label for="tags" class="form-label mb-0">Keresőszavak</label>
+        <p class="small mb-2">
+            Vesszővel és szóközzel elválasztott, akár többszavas értékek. Pl.: virágok, növények, természet, trópusi esőerdő.
+            Legfeljebb 20 érték a megengedett.
+        </p>
+        <input type="text"
+               name="tags"
+               id="tags"
+               class="form-control @error('tags') is-invalid @enderror"
+               required
+               minlength="3"
+               maxlength="255"
+               pattern="^[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+(?: [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+)*(, [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+(?: [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+)*){0,19}$"
+               title="Vesszővel és szóközzel elválasztott értékek."
+               autocomplete="tags"
+               placeholder="A műtárgyhoz tartozó keresőszavak"
+               value="{{ old('tags') }}" />
+        <x-forms.error :name="'tags'" />
+    </div>
+
+    {{--TAGS_EN --}}
+    <div class="mb-3">
+        <label for="tags_en" class="form-label">Keresőszavak (angolul)</label>
+        <input type="text"
+               name="tags_en"
+               id="tags_en"
+               class="form-control @error('tags_en') is-invalid @enderror"
+               required
+               minlength="3"
+               maxlength="255"
+               pattern="^[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+(?: [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+)*(, [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+(?: [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+)*){0,19}$"
+               title="Vesszővel és szóközzel elválasztott értékek."
+               autocomplete="tags_en"
+               placeholder="A műtárgyhoz tartozó keresőszavak (angolul)"
+               value="{{ old('tags_en') }}" />
+        <x-forms.error :name="'tags_en'" />
     </div>
 
     {{-- CATEGORY_ID --}}

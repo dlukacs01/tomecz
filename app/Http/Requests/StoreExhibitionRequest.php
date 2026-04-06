@@ -28,7 +28,7 @@ class StoreExhibitionRequest extends FormRequest
             //
 
             'title' => ['required', 'string', 'min:3', 'max:255'],
-            'title_en' => ['nullable', 'string', 'min:3', 'max:255'],
+            'title_en' => ['required', 'string', 'min:3', 'max:255'],
             'year' => ['required', 'integer', 'min:1900', 'max:' . (now()->year + 10)],
             'location' => ['required', 'string', 'min:3', 'max:255'],
             'status_id' => ['required', 'integer'],

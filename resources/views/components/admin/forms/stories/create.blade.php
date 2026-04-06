@@ -25,6 +25,7 @@
                name="title_en"
                id="title_en"
                class="form-control @error('title_en') is-invalid @enderror"
+               required
                minlength="3"
                maxlength="255"
                autocomplete="title_en"
@@ -100,6 +101,7 @@
                name="tags"
                id="tags"
                class="form-control @error('tags') is-invalid @enderror"
+               required
                minlength="3"
                maxlength="255"
                pattern="^[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+(?: [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+)*(, [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+(?: [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+)*){0,19}$"
@@ -117,6 +119,7 @@
                name="tags_en"
                id="tags_en"
                class="form-control @error('tags_en') is-invalid @enderror"
+               required
                minlength="3"
                maxlength="255"
                pattern="^[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+(?: [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+)*(, [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+(?: [A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű0-9\-]+)*){0,19}$"

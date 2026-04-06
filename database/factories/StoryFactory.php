@@ -21,10 +21,10 @@ class StoryFactory extends Factory
 
             'intro' => 'Bevezető...',
             'intro_en' => 'Intro...',
-            'tags' => 'virágok, természet, növények',
-            'tags_en' => 'flowers, nature, plants',
             'body' => implode("\n\n", array_map(fn () => fake()->sentences(12, true), range(1,4))),
             'body_en' => 'Body...',
+            'tags' => 'virágok, természet, növények',
+            'tags_en' => 'flowers, nature, plants',
             'original' => 'https://placehold.co/1000x1000', // fake()->imageUrl(1000, 1000)
             'created_at' => now(),
             'updated_at' => now()

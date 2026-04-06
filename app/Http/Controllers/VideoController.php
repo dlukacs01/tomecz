@@ -35,6 +35,9 @@ class VideoController extends Controller
     public function create()
     {
         //
+
+        $title = 'Videó létrehozása' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        return view('admin.videos.create', compact('title'));
     }
 
     /**
@@ -43,6 +46,37 @@ class VideoController extends Controller
     public function store(StoreVideoRequest $request)
     {
         //
+
+        // VALIDATION
+        $validated = $request->validated();
+
+        // VALUES
+        $inputs['title'] = $validated['title'];
+        $inputs['title_en'] = $validated['title_en'];
+        $inputs['slug'] = getSlug($inputs['title']);
+        $inputs['year'] = $validated['year'];
+        $inputs['url'] = $validated['url'];
+        $inputs['body'] = $validated['body'];
+        $inputs['body_en'] = $validated['body_en'];
+        $inputs['tags'] = $validated['tags'];
+        $inputs['tags_en'] = $validated['tags_en'];
+
+        // POSITION
+        $videos = $this->videoService->getAllForAdminPosition();
+        $inputs['position'] = getPosition($videos);
+
+        // ORIGINAL
+        $upload = $validated['original'];
+        $filename = getFilename();
+        $inputs['original'] = $filename;
+        $this->videoService->upload($upload, $filename);
+
+        // SAVE, SESSION, REDIRECT
+        Video::create($inputs);
+        return redirect()->route('admin.videos.index')->with('success', config(
+            'custom.flash.videos.store',
+            'A videó létrehozása sikeres volt.'
+        ));
     }
 
     /**
