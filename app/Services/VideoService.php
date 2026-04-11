@@ -21,14 +21,8 @@ class VideoService
             ->get();
     }
 
-    // ALL (home)
+    // ALL (home & admin)
     public function getAll(): Collection
-    {
-        return Video::latest('id')->get();
-    }
-
-    // ADMIN (position)
-    public function getAllForAdminPosition(): Collection
     {
         return Video::orderBy('position')->get();
     }
@@ -36,7 +30,7 @@ class VideoService
     // ADMIN (index)
     public function getAllForAdminIndex(): LengthAwarePaginator
     {
-        return Video::latest('id')->paginate(config('custom.pagination.admin', 10));
+        return Video::orderBy('position')->paginate(config('custom.pagination.admin', 10));
     }
 
     // SEARCH
@@ -69,5 +63,15 @@ class VideoService
             $filename
         );
         $image->save($path);
+    }
+
+    // DELETE (one)
+    public function deleteFiles(Video $video): void
+    {
+        $path = getPathForDelete(
+            config('custom.paths.videos.delete', 'images/videos'),
+            $video->original
+        );
+        deleteOne($path);
     }
 }

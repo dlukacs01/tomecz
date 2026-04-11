@@ -16,7 +16,7 @@
                 {{-- HEAD --}}
                 <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>Sorszám</th>
                     <th>Kép</th>
                     <th>Cím</th>
                     <th>Megtekintések</th>
@@ -32,7 +32,7 @@
                 @foreach($videos as $video)
 
                     <tr>
-                        <td class="align-middle">{{ $video->id }}</td>
+                        <td class="align-middle">{{ $video->position }}</td>
                         <td>
                             <img src="{{ $video->original }}" alt="{{ $video->title }}" class="c-thumbnail">
                         </td>

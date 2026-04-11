@@ -16,7 +16,7 @@
                 {{-- HEAD --}}
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        <th>Sorszám</th>
                         <th>Név</th>
                         <th>Létrehozva</th>
                         <th>Szerkesztés</th>
@@ -30,7 +30,7 @@
                 @foreach($categories as $category)
 
                     <tr>
-                        <td class="align-middle">{{ $category->id }}</td>
+                        <td class="align-middle">{{ $category->position }}</td>
                         <td class="align-middle">{{ $category->name }}</td>
                         <td class="align-middle">{{ $category->created_at->diffForHumans() }}</td>
                         <td class="align-middle">

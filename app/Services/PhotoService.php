@@ -111,19 +111,11 @@ class PhotoService
     // DELETE (one)
     public function deleteFiles(Photo $photo): void
     {
-        // original
-        $path_original = getPathForDelete(
-            config('custom.paths.photos.original.delete', 'images/photos/original'),
+        $path = getPathForDelete(
+            config('custom.paths.photos.delete', 'images/photos'),
             $photo->original
         );
-        deleteOne($path_original);
-
-        // thumbnail
-        $path_thumbnail = getPathForDelete(
-            config('custom.paths.photos.thumbnail.delete', 'images/photos/thumbnail'),
-            $photo->thumbnail
-        );
-        deleteOne($path_thumbnail);
+        deleteOne($path);
     }
 
     // DELETE (all for project)
@@ -133,19 +125,11 @@ class PhotoService
         $files = [];
         foreach ($photos as $photo) {
 
-            // originals
-            $path_original = getPathForDelete(
-                config('custom.paths.photos.original.delete', 'images/photos/original'),
+            $path = getPathForDelete(
+                config('custom.paths.photos.delete', 'images/photos'),
                 $photo->original
             );
-            $files[] = $path_original;
-
-            // thumbnails
-            $path_thumbnail = getPathForDelete(
-                config('custom.paths.photos.thumbnail.delete', 'images/photos/thumbnail'),
-                $photo->thumbnail
-            );
-            $files[] = $path_thumbnail;
+            $files[] = $path;
 
         }
         deleteMultiple($files);

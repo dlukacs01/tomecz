@@ -174,17 +174,6 @@ class DatabaseSeeder extends Seeder
             'technique_en' => 'Print',
         ])->create();
 
-        // PHOTOS (Photo)
-        Photo::factory(config('custom.seeders.photos', 100))->sequence(fn (Sequence $sequence) => [
-            'project_id' => 12,
-            'position' => $sequence->index + 1,
-            'title' => 'Fénykép' . '-' . $sequence->index + 1,
-            'title_en' => 'Photo' . '-' . $sequence->index + 1,
-            'slug' => 'fenykep' . '-' . $sequence->index + 1,
-            'technique' => 'Nyomat',
-            'technique_en' => 'Print',
-        ])->create();
-
         // EXHIBITIONS (Archive)
         Exhibition::factory(config('custom.seeders.exhibitions', 10))->sequence(fn (Sequence $sequence) => [
             'title' => 'Archív' . '-' . $sequence->index + 1,

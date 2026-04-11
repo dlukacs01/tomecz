@@ -38,6 +38,6 @@ class CategoryService
     // ADMIN (index)
     public function getAllForAdminIndex(): LengthAwarePaginator
     {
-        return Category::latest('id')->paginate(config('custom.pagination.admin', 10));
+        return Category::orderBy('position')->paginate(config('custom.pagination.admin', 10));
     }
 }

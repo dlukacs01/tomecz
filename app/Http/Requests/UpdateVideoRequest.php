@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class UpdateVideoRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateVideoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,21 @@ class UpdateVideoRequest extends FormRequest
      */
     public function rules(): array
     {
+        $min = config('custom.validations.filesize.calculation.min', 1);
+        $max = config('custom.validations.filesize.calculation.max', 30720);
         return [
             //
+
+            'position' => ['required', 'integer', 'min:1', 'max:1000000000'],
+            'title' => ['required', 'string', 'min:3', 'max:255'],
+            'title_en' => ['required', 'string', 'min:3', 'max:255'],
+            'year' => ['required', 'integer', 'min:1900', 'max:' . date('Y')],
+            'url' => ['required', 'string', 'url', 'min:3', 'max:255'],
+            'body' => ['nullable', 'string', 'min:3', 'max:65535'],
+            'body_en' => ['nullable', 'string', 'min:3', 'max:65535'],
+            'tags' => ['required', 'string', 'min:3', 'max:255', 'regex:/^[\p{L}\d\-]+(?: [\p{L}\d\-]+)*(, [\p{L}\d\-]+(?: [\p{L}\d\-]+)*){0,19}$/u'],
+            'tags_en' => ['required', 'string', 'min:3', 'max:255', 'regex:/^[\p{L}\d\-]+(?: [\p{L}\d\-]+)*(, [\p{L}\d\-]+(?: [\p{L}\d\-]+)*){0,19}$/u'],
+            'original' => ['nullable', File::image()->min($min)->max($max)]
         ];
     }
 }

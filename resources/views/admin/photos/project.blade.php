@@ -16,7 +16,7 @@
                 {{-- HEAD --}}
                 <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>Sorszám</th>
                     <th>Kép</th>
                     <th>Cím</th>
                     <th>Megtekintések</th>
@@ -32,7 +32,7 @@
                 @foreach($photos as $photo)
 
                     <tr>
-                        <td class="align-middle">{{ $photo->id }}</td>
+                        <td class="align-middle">{{ $photo->position }}</td>
                         <td>
                             <img src="{{ $photo->original }}" alt="{{ $photo->title }}" class="c-thumbnail">
                         </td>
