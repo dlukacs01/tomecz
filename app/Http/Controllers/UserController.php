@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -37,12 +39,27 @@ class UserController extends Controller
 
     public function password_edit(User $user)
     {
-
+        $title = 'Jelszócsere' . ' &mdash; ' . config('app.name', 'Tomecz Dániel');
+        return view('admin.users.password', compact(
+            'title',
+            'user'
+        ));
     }
 
-    public function password_update(User $user)
+    public function password_update(UpdatePasswordRequest $request, User $user)
     {
+        // VALIDATION
+        $validated = $request->validated();
 
+        // VALUES
+        $user->password = Hash::make($validated['password']);
+
+        // SAVE, SESSION, REDIRECT
+        $user->save();
+        return redirect()->route('admin.user.password.edit', $user)->with('success', config(
+            'custom.flash.password.update',
+            'A jelszó frissítése sikeres volt.'
+        ));
     }
 
     public function edit(User $user)

@@ -1,0 +1,8 @@
+/* TOGGLE */
+
+.c-icon-container {
+    float: right;
+    margin-top: -30px;
+    margin-right: 30px;
+    cursor: pointer;
+}

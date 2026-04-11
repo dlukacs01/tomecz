@@ -21,6 +21,7 @@
         'resources/css/custom/admin/app.css', // general
         'resources/css/custom/admin/img.css',
         'resources/css/custom/admin/pagination.css',
+        'resources/css/custom/admin/auth.css'
     ])
 </head>
 

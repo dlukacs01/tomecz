@@ -62,6 +62,9 @@ return array(
         'users' => array(
             'update' => 'A felhasználó frissítése sikeres volt.',
         ),
+        'password' => array(
+            'update' => 'A jelszó frissítése sikeres volt.',
+        ),
         'categories' => array(
             'store' => 'A kategória létrehozása sikeres volt.',
             'update' => 'A kategória frissítése sikeres volt.',
