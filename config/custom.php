@@ -59,6 +59,9 @@ return array(
         'stories' => 'Biztosan törölni szeretnéd ezt a hírt?'
     ),
     'flash' => array(
+        'users' => array(
+            'update' => 'A felhasználó frissítése sikeres volt.',
+        ),
         'categories' => array(
             'store' => 'A kategória létrehozása sikeres volt.',
             'update' => 'A kategória frissítése sikeres volt.',

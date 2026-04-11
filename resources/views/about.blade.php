@@ -19,7 +19,7 @@
 
                     {{-- CV --}}
                     <div class="text-center">
-                        <p>{!! nl2br(e($user->cv)) !!}</p>
+                        <p>{!! $user->cv !!}</p>
                     </div>
 
                 </div>
